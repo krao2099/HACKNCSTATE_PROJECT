@@ -3,7 +3,7 @@
     "dob": "1990-05-15",
     "bio": "test1",
     "pic": "",
-    "p1_id": "",
-    "p2_id": "",
-    "relation_type": ""
+    "p1_id": "1",
+    "p2_id": "2",
+    "relation_type": "Parent"
 }
