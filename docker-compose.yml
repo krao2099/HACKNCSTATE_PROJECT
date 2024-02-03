@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    build:
+      dockerfile: Dockerfile
+      context: ./database
+    user: postgres
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+    volumes:
+      - ./server:/src
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true

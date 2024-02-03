@@ -18,7 +18,7 @@ async def view_profile():
 
 @app.route('/profile', methods=['POST'])
 async def create_profile():
-    pass
+    
 
 @app.route('/relationship', methods=['GET'])
 async def view_relationship():
