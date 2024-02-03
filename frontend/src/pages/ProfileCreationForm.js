@@ -47,40 +47,48 @@ const ProfileCreationForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" name="name" value={profile.name} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Date of Birth:
-        <input type="date" name="dob" value={profile.dob} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Bio:
-        <textarea name="bio" value={profile.bio} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Picture:
-        <input type="file" name="pic" onChange={handleFileChange} />
-      </label>
-      <br />
-      <label>
-        Parent 1:
-        <input type="text" name="p1_id" value={profile.p1_id} onChange={handleChange} />
-      </label>
-      <label>
-        Parent 2:
-        <input type="text" name="p2_id" value={profile.p2_id} onChange={handleChange} />
-      </label>
-      <br />
-      <Button variant="primary" className="green-button" type="submit">
-        Submit
-      </Button>
-    </form>
+    <div className="page-background">
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <div className='form-title'>Add Family Member</div>
+          <div className="form-group">
+            <label className='form-item'>
+              Name <br />
+              <input type="text" name="name" value={profile.name} onChange={handleChange} />
+            </label>
+            <label className='form-item'>
+              Date of Birth <br />
+              <input type="date" name="dob" value={profile.dob} onChange={handleChange} />
+            </label>
+          </div>
+          <div className="form-group">
+            <label className='form-item'>
+              Bio <br />
+              <textarea name="bio" className='bio-field' value={profile.bio} onChange={handleChange} />
+            </label>
+          </div>
+          <div className="form-group">
+            <label className='form-item'>
+              Picture <br />
+              <input type="file" name="pic" onChange={handleFileChange} />
+            </label>
+          </div>
+          <div className="form-group">
+            <label className='form-item'>
+              Parent 1 <br />
+              <input type="text" name="p1_id" value={profile.p1_id} onChange={handleChange} />
+            </label>
+            <label className='form-item'>
+              Parent 2 <br />
+              <input type="text" name="p2_id" value={profile.p2_id} onChange={handleChange} />
+            </label>
+          </div>
+          <Button variant="primary" className="green-button" type="submit">
+            Submit
+          </Button>
+        </form>
+      </div>
+    </div>
   );
 };
 
