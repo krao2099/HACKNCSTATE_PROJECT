@@ -10,4 +10,3 @@ async def create_profile(data):
     id = database_util.execute(query, (name, dob, bio, pic), retrieve=True)
     return id
 
-
