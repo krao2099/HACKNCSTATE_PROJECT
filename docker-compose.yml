@@ -17,6 +17,8 @@ services:
       context: ./server
     volumes:
       - ./server:/src
+    ports:
+      - "5000:5000"
     depends_on:
       db:
         condition: service_healthy
