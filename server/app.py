@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import os
 from user_profile import create_profile
+from user_relationship import create_relationship, create_relationship_nojson
 
 app = Flask(__name__)
 
@@ -17,8 +18,12 @@ async def view_profile_endpoint():
 
 @app.route('/profile', methods=['POST'])
 async def create_profile_endpoint():
-    response = create_profile(request.json)
-    return response, 200
+    data = request.json
+    id = create_profile(request.json)
+    create_relationship_nojson(id, data['p1_id'], data['relation_type'])
+    if data['p2_id']:
+        create_relationship_nojson(id, data['p2_id'], data['relation_type'])
+    return jsonify({'success': 'Created Profile'}), 200
 
 
 @app.route('/relationship', methods=['GET'])
