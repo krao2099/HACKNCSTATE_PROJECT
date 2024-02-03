@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 import os
-
-
+from user_profile import create_profile
 
 app = Flask(__name__)
 
@@ -17,8 +16,10 @@ async def view_profile():
     pass
 
 @app.route('/profile', methods=['POST'])
-async def create_profile():
-    
+async def create_profile_endpoint():
+    response = create_profile(request.json)
+    return response, 200
+
 
 @app.route('/relationship', methods=['GET'])
 async def view_relationship():
