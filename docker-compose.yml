@@ -5,6 +5,11 @@ services:
       dockerfile: Dockerfile
       context: ./database
     user: postgres
+    environment:
+      POSTGRES_DB: crux_db
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
     healthcheck:
       test: [ "CMD", "pg_isready" ]
       interval: 10s
