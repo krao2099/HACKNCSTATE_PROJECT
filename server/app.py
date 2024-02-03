@@ -11,9 +11,9 @@ app = Flask(__name__)
 def retrieve_tree_endpoint():
     pass
 
-@app.route('/profile', methods=['GET'])
-def view_profile_endpoint():
-    return jsonify(view_profile(request.json)), 200
+@app.route('/profile/<id>', methods=['GET'])
+def view_profile_endpoint(id):
+    return jsonify(view_profile(id)), 200
 
 @app.route('/profile', methods=['POST'])
 def create_profile_endpoint():
