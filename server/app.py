@@ -3,13 +3,15 @@ import os
 from user_profile import create_profile, view_profile
 from user_relationship import create_relationship, create_relationship_nojson
 from memory import create_memory, view_memory
+from tree import return_tree
 
 app = Flask(__name__)
 
 
 @app.route('/tree', methods=['GET'])
 def retrieve_tree_endpoint():
-    pass
+    return jsonify(return_tree()), 200
+    
 
 @app.route('/profile/<id>', methods=['GET'])
 def view_profile_endpoint(id):
@@ -35,10 +37,9 @@ def create_relationship_endpoint():
     id = create_relationship(data)
     return jsonify({'relation_id': id}), 200
 
-@app.route('/memory', methods=['GET'])
-def view_memory_endpoint():
-    data = request.json
-    return jsonify(view_memory(request.json)), 200
+@app.route('/memory/<id>', methods=['GET'])
+def view_memory_endpoint(id):
+    return jsonify(view_memory(id)), 200
 
 @app.route('/memory', methods=['POST'])
 def create_memory_endpoint():
