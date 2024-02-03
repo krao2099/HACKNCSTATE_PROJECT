@@ -70,11 +70,11 @@ const ProfileCreationForm = () => {
       <br />
       <label>
         Parent 1:
-        <input type="text" name="name" value={profile.p1_id} onChange={handleChange} />
+        <input type="text" name="p1_id" value={profile.p1_id} onChange={handleChange} />
       </label>
       <label>
         Parent 2:
-        <input type="text" name="name" value={profile.p2_id} onChange={handleChange} />
+        <input type="text" name="p2_id" value={profile.p2_id} onChange={handleChange} />
       </label>
       <br />
       <Button variant="primary" className="green-button" type="submit">
