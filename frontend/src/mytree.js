@@ -20,9 +20,10 @@ import React, { Component } from 'react';
                 mouseScrool: FamilyTree.none,
                 siblingSeparation: 120,
                 template: 'john',
+                //Fields for the profiles
                 nodeBinding: {
                     field_0: "name",
-                    field_1: "title",
+                    field_1: "birthday",
                     img_0: "img",
                 }
             });

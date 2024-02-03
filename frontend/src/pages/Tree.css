@@ -1,4 +1,57 @@
 .tree-header {
-    font-size: 4em;
-    color: #050;
+    font-size: 2em;
+    color: white;
+    margin: 0;
+    display: inline-block;
+    margin-top: 9px;
+    margin-left: 39px;
+}
+
+.header {
+  z-index: 10;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  background: #050;
+  height: 70px;
+
+}
+
+.bft-search {
+  top: 6px !important;
+  z-index: 10;
+}
+
+.new-link {
+  bottom: 30px;
+  right: 20px;
+  position: absolute;
+  background: #050;
+  border-radius: 50px;
+  padding: 12px;
+}
+
+.new-link img {
+  width: 32px;
+  filter: invert(100%);
+  margin-bottom: -3px;
+}
+
+.header .links {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  position: relative;
+  align-items: stretch;
+  height: 100%;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+  padding-top: 25px;
+}
+
+.bft-edit-form-instruments div {
+  display: none;
 }
