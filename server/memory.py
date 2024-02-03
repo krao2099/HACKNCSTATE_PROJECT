@@ -5,12 +5,22 @@ def create_memory(data):
     description = data['description']
     files = data['files']
     mem_type = data['mem_type']
+    p_ids = data['p_ids']
     
 
     query = "INSERT INTO Memory (title, description, files, mem_type) VALUES (%s, %s, %s, %s) RETURNING id"
 
-    return database_util.execute(query, (title, description, files, mem_type), retrieve=True)
+    id = database_util.execute(query, (title, description, files, mem_type), retrieve=True)
 
+    query = "INSERT INTO Memory_Person (memory_id, person_id) VALUES (%s, %s)"
+
+    for p_id in p_ids:
+        database_util.execute(query, (id, p_id))
+
+    return id
+
+
+#TODO robert
 def view_memory(data):
     id = data['id']
 

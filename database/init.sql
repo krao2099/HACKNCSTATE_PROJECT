@@ -4,7 +4,8 @@ CREATE TABLE Person (
     name TEXT,
     birthday DATE,
     bio TEXT, 
-    profile_picture TEXT
+    profile_picture TEXT,
+    root BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE RelationshipType (
@@ -43,7 +44,7 @@ CREATE TABLE TREE (
 
 -- Insert people
 INSERT INTO Person (name, birthday, bio, profile_picture) VALUES
-    ('Alice', '1990-05-15', 'Test Bio', NULL),
+    ('Alice', '1990-05-15', 'Test Bio', NULL, TRUE),
     ('Bob', '1985-08-22', 'Test Bio', NULL),
     ('Charlie', '1978-11-30', 'Test Bio', NULL),
     ('David', '1992-03-10', 'Test Bio', NULL),

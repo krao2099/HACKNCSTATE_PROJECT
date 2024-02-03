@@ -1,0 +1,7 @@
+{
+    "title": "test",
+    "description": "test memory",
+    "files": ["test.jpg", "pdf.jpg"],
+    "mem_type": "0",
+    "p_ids": ["1", "2"]
+}

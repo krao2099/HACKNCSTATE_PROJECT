@@ -1,0 +1,5 @@
+curl -X POST -H "Content-Type: application/json; charset=utf-8" -d @sample_profile.json "http://127.0.0.1:5000/profile"
+
+curl -X POST -H "Content-Type: application/json; charset=utf-8" -d @sample_memory.json "http://127.0.0.1:5000/memory"
+
+curl -X GET -H "Content-Type: application/json; charset=utf-8" "http://127.0.0.1:5000/profile/21"

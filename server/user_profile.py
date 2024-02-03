@@ -10,12 +10,10 @@ def create_profile(data):
     id = database_util.execute(query, (name, dob, bio, pic), retrieve=True)
     return id
 
-def view_profile(data):
-    id = data['id']
-
+def view_profile(id):
     query = "SELECT * FROM Person WHERE id = %s"
 
-    result = database_util.retrieve(query, (id,))
+    result = database_util.retrieve(query, (id,))[0]
 
     person_data = {
         "id": result[0],
