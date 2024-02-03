@@ -20,8 +20,7 @@ def create_memory(data):
     return id
 
 
-def view_memory(data):
-    id = data['id']
+def view_memory(id):
 
     query = "SELECT * FROM Memory WHERE id = %s"
 
@@ -46,3 +45,35 @@ def view_memory(data):
     }
 
     return memory_data
+
+def get_memories_person(p_id):
+
+    query = "SELECT mem.id, mem.title, mem.description, mem.files, mem.mem_type FROM Memory_Person AS mp JOIN Memory AS mem ON mp.memory_id = mem.id WHERE mp.person_id = %s"
+
+
+    results = database_util.retrieve(query, (p_id,))
+
+    memories = []
+    for result in results:
+        id = result[0]
+
+        query = "SELECT * FROM Memory_Person WHERE memory_id = %s"
+
+        result2 = database_util.retrieve(query, (id,))
+
+        people = []
+        for r in result2:
+            people.append(r[1])
+
+        memory_data = {
+            "id": id,
+            "title": result[1],
+            "description": result[2],
+            "files": result[3],
+            "mem_type": result[4],
+            "people": people
+        }
+        memories.append(memory_data)
+
+    return memories
+

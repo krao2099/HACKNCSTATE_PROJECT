@@ -5,6 +5,8 @@ CREATE TABLE Person (
     birthday DATE,
     bio TEXT, 
     profile_picture TEXT,
+    gender TEXT
+
 );
 
 CREATE TABLE RelationshipType (
@@ -42,27 +44,27 @@ CREATE TABLE TREE (
 );
 
 -- Insert people
-INSERT INTO Person (name, birthday, bio, profile_picture) VALUES
-    ('Alice', '1990-05-15', 'Test Bio', NULL),
-    ('Bob', '1985-08-22', 'Test Bio', NULL),
-    ('Charlie', '1978-11-30', 'Test Bio', NULL),
-    ('David', '1992-03-10', 'Test Bio', NULL),
-    ('Emily', '1980-06-25', 'Test Bio', NULL),
-    ('Frank', '1987-09-18', 'Test Bio', NULL),
-    ('Grace', '1995-02-08', 'Test Bio', NULL),
-    ('Henry', '1975-04-20', 'Test Bio', NULL),
-    ('Ivy', '1998-07-12', 'Test Bio', NULL),
-    ('Jack', '1982-10-05', 'Test Bio', NULL),
-    ('Kate', '1991-12-28', 'Test Bio', NULL),
-    ('Liam', '1989-01-17', 'Test Bio', NULL),
-    ('Mia', '1993-04-03', 'Test Bio', NULL),
-    ('Noah', '1973-07-29', 'Test Bio', NULL),
-    ('Olivia', '1984-09-14', 'Test Bio', NULL),
-    ('Peter', '1996-11-09', 'Test Bio', NULL),
-    ('Quinn', '1986-01-26', 'Test Bio', NULL),
-    ('Ryan', '1977-03-15', 'Test Bio', NULL),
-    ('Sophia', '1997-06-20', 'Test Bio', NULL),
-    ('Thomas', '1988-08-02', 'Test Bio', NULL);
+INSERT INTO Person (name, birthday, bio, profile_picture, gender) VALUES
+    ('Alice', '1990-05-15', 'Test Bio', NULL, 'female'),
+    ('Bob', '1985-08-22', 'Test Bio', NULL, 'male'),
+    ('Charlie', '1978-11-30', 'Test Bio', NULL, 'male'),
+    ('David', '1992-03-10', 'Test Bio', NULL, 'male'),
+    ('Emily', '1980-06-25', 'Test Bio', NULL, 'female'),
+    ('Frank', '1987-09-18', 'Test Bio', NULL, 'male'),
+    ('Grace', '1995-02-08', 'Test Bio', NULL, 'female'),
+    ('Henry', '1975-04-20', 'Test Bio', NULL, 'male'),
+    ('Ivy', '1998-07-12', 'Test Bio', NULL, 'female'),
+    ('Jack', '1982-10-05', 'Test Bio', NULL, 'male'),
+    ('Kate', '1991-12-28', 'Test Bio', NULL, 'female'),
+    ('Liam', '1989-01-17', 'Test Bio', NULL, 'male'),
+    ('Mia', '1993-04-03', 'Test Bio', NULL, 'female'),
+    ('Noah', '1973-07-29', 'Test Bio', NULL, 'male'),
+    ('Olivia', '1984-09-14', 'Test Bio', NULL, 'female'),
+    ('Peter', '1996-11-09', 'Test Bio', NULL, 'male'),
+    ('Quinn', '1986-01-26', 'Test Bio', NULL, 'male'),
+    ('Ryan', '1977-03-15', 'Test Bio', NULL, 'male'),
+    ('Sophia', '1997-06-20', 'Test Bio', NULL, 'female'),
+    ('Thomas', '1988-08-02', 'Test Bio', NULL, 'male');
 
 -- Insert relationship types
 INSERT INTO RelationshipType (name) VALUES
@@ -104,7 +106,8 @@ INSERT INTO MemoryType (name) VALUES
 
 -- Insert memories
 INSERT INTO Memory (title, description, files, mem_type) VALUES
-    ('Alice''s Birthday', 'Alice''s birthday party', NULL, 3), -- Special event memory
+    ('Alices Birthday', 'Alices birthday party', NULL, 3), -- Special event memory
+    ('Alices Birthday 2', 'Alices birthday party', NULL, 3), -- Special event memory
     ('Family Vacation 2000', 'Family vacation in 2000', NULL, 2), -- Family memory
     ('Graduation Day', 'Graduation day', NULL, 3), -- Special event memory
     ('Siblings Playing', 'David and Grace playing in the backyard', NULL, 1), -- Childhood memory
@@ -114,6 +117,8 @@ INSERT INTO Memory (title, description, files, mem_type) VALUES
 INSERT INTO Memory_Person (memory_id, person_id) VALUES
     (1, 1), -- Alice's birthday memory
     (1, 4), -- Add david to alices birthday
+    (1, 1), -- Alice's birthday memory
+    (1, 2), -- Add david to alices birthday
     (2, 4), -- Family vacation memory
     (3, 10), -- Graduation memory
     (4, 4), -- David's childhood memory

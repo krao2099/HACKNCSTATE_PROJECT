@@ -3,3 +3,6 @@ curl -X POST -H "Content-Type: application/json; charset=utf-8" -d @sample_profi
 curl -X POST -H "Content-Type: application/json; charset=utf-8" -d @sample_memory.json "http://127.0.0.1:80/api/memory"
 
 curl -X GET -H "Content-Type: application/json; charset=utf-8" "http://127.0.0.1:80/api/profile/21"
+
+
+curl -X GET -H "Content-Type: application/json; charset=utf-8" "http://127.0.0.1:80/api/tree"
