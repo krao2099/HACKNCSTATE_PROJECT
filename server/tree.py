@@ -6,11 +6,11 @@ def return_tree():
 
     query = "SELECT * FROM Person;"
 
-    persons = database_util.retrieve(query)
+    persons = database_util.retrieve(query, None)
 
     query = "SELECT * FROM Relationship;"
 
-    relationships = database_util.retrieve(query)
+    relationships = database_util.retrieve(query, None)
 
     tree['persons'] = persons
 
