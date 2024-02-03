@@ -5,7 +5,6 @@ CREATE TABLE Person (
     birthday DATE,
     bio TEXT, 
     profile_picture TEXT,
-    root BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE RelationshipType (
@@ -68,7 +67,8 @@ INSERT INTO Person (name, birthday, bio, profile_picture) VALUES
 -- Insert relationship types
 INSERT INTO RelationshipType (name) VALUES
     ('Parent'),
-    ('Sibling');
+    ('Sibling'),
+    ('Married');
 
 -- Insert relationships
 INSERT INTO Relationship (p1_id, p2_id, type_id) VALUES
@@ -113,6 +113,7 @@ INSERT INTO Memory (title, description, files, mem_type) VALUES
 -- Link memories to people
 INSERT INTO Memory_Person (memory_id, person_id) VALUES
     (1, 1), -- Alice's birthday memory
+    (1, 4), -- Add david to alices birthday
     (2, 4), -- Family vacation memory
     (3, 10), -- Graduation memory
     (4, 4), -- David's childhood memory
