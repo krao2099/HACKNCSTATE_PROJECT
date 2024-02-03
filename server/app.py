@@ -6,13 +6,13 @@ app = Flask(__name__)
 
 
 @app.route('/tree', methods=['GET'])
-async def retrieve_tree():
+async def retrieve_tree_endpoint():
     pass
 
 
 
 @app.route('/profile', methods=['GET'])
-async def view_profile():
+async def view_profile_endpoint():
     pass
 
 @app.route('/profile', methods=['POST'])
@@ -22,19 +22,19 @@ async def create_profile_endpoint():
 
 
 @app.route('/relationship', methods=['GET'])
-async def view_relationship():
+async def view_relationship_endpoint():
     pass
 
 @app.route('/relationship', methods=['POST'])
-async def create_relationship():
+async def create_relationship_endpoint():
     pass
 
 @app.route('/memory', methods=['GET'])
-async def view_memory():
+async def view_memory_endpoint():
     pass
 
 @app.route('/relationship', methods=['POST'])
-async def create_memory():
+async def create_memory_endpoint():
     pass
 
     
