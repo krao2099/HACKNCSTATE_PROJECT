@@ -20,7 +20,6 @@ def create_memory(data):
     return id
 
 
-#TODO robert
 def view_memory(data):
     id = data['id']
 
