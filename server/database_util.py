@@ -1,7 +1,7 @@
 import psycopg2
 
 def connect_db():
-    return psycopg2.connect(host="db",dbname="family_tree", user="postgres", password="password")
+    return psycopg2.connect(host="localhost",dbname="family_tree", user="postgres", password="password")
 
 def execute(query, params, retrieve=False):
     return_val = None
