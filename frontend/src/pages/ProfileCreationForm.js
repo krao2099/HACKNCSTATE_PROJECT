@@ -6,6 +6,7 @@ const ProfileCreationForm = () => {
   const [profile, setProfile] = useState({
     name: '',
     dob: '',
+    gender: '',
     bio: '',
     pic: '',
     p1_id: '',
@@ -55,6 +56,12 @@ const ProfileCreationForm = () => {
             <label className='form-item'>
               Name <br />
               <input type="text" name="name" value={profile.name} onChange={handleChange} />
+            </label>
+          </div>
+          <div className="form-group">
+            <label className='form-item'>
+              Gender <br />
+              <input type="text" name="gender" value={profile.gender} onChange={handleChange} />
             </label>
             <label className='form-item'>
               Date of Birth <br />
