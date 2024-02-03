@@ -7,7 +7,7 @@ def create_memory(data):
     mem_type = data['mem_type']
     
 
-    query = "INSERT INTO Memory (title, description, files, mem_type) VALUES (%s, %s, %s, %s)"
+    query = "INSERT INTO Memory (title, description, files, mem_type) VALUES (%s, %s, %s, %s) RETURNING id"
 
     return database_util.execute(query, (title, description, files, mem_type), retrieve=True)
 
