@@ -22,7 +22,7 @@ def create_profile_endpoint():
     create_relationship_nojson(id, data['p1_id'], data['relation_type'])
     if data['p2_id']:
         create_relationship_nojson(id, data['p2_id'], data['relation_type'])
-    return jsonify({'success': 'Created Profile'}), 200
+    return jsonify({'profile_id': id}), 200
 
 
 @app.route('/relationship', methods=['GET'])
@@ -31,16 +31,20 @@ def view_relationship_endpoint():
 
 @app.route('/relationship', methods=['POST'])
 def create_relationship_endpoint():
-    pass
+    data = request.json
+    id = create_relationship(data)
+    return jsonify({'relation_id': id}), 200
 
 @app.route('/memory', methods=['GET'])
 def view_memory_endpoint():
     data = request.json
     return jsonify(view_memory(request.json)), 200
 
-@app.route('/relationship', methods=['POST'])
+@app.route('/memory', methods=['POST'])
 def create_memory_endpoint():
-    pass
+    data = request.json
+    id = create_memory(data)
+    return jsonify({'memory_id': id}), 200
 
 @app.route('/test', methods=['GET'])
 def test():
