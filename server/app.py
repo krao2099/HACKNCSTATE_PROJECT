@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import os
 from user_profile import create_profile, view_profile
 from user_relationship import create_relationship, create_relationship_nojson
-from memory import create_memory, view_memory
+from memory import create_memory, view_memory, get_memories_person
 from tree import return_tree
 
 app = Flask(__name__)
@@ -36,6 +36,10 @@ def create_relationship_endpoint():
     data = request.json
     id = create_relationship(data)
     return jsonify({'relation_id': id}), 200
+
+@app.route('/profile/memory/<id>', methods=['GET'])
+def get_memories_person_endpoint(id):
+    return jsonify(get_memories_person(id)), 200
 
 @app.route('/memory/<id>', methods=['GET'])
 def view_memory_endpoint(id):

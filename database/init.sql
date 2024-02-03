@@ -104,7 +104,8 @@ INSERT INTO MemoryType (name) VALUES
 
 -- Insert memories
 INSERT INTO Memory (title, description, files, mem_type) VALUES
-    ('Alice''s Birthday', 'Alice''s birthday party', NULL, 3), -- Special event memory
+    ('Alices Birthday', 'Alices birthday party', NULL, 3), -- Special event memory
+    ('Alices Birthday 2', 'Alices birthday party', NULL, 3), -- Special event memory
     ('Family Vacation 2000', 'Family vacation in 2000', NULL, 2), -- Family memory
     ('Graduation Day', 'Graduation day', NULL, 3), -- Special event memory
     ('Siblings Playing', 'David and Grace playing in the backyard', NULL, 1), -- Childhood memory
@@ -114,6 +115,8 @@ INSERT INTO Memory (title, description, files, mem_type) VALUES
 INSERT INTO Memory_Person (memory_id, person_id) VALUES
     (1, 1), -- Alice's birthday memory
     (1, 4), -- Add david to alices birthday
+    (1, 1), -- Alice's birthday memory
+    (1, 2), -- Add david to alices birthday
     (2, 4), -- Family vacation memory
     (3, 10), -- Graduation memory
     (4, 4), -- David's childhood memory

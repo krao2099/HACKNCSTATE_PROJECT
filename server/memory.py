@@ -66,11 +66,11 @@ def get_memories_person(p_id):
             people.append(r[1])
 
         memory_data = {
-            "id": result[1],
-            "title": result[2],
-            "description": result[3],
-            "files": result[4],
-            "mem_type": result[5],
+            "id": id,
+            "title": result[1],
+            "description": result[2],
+            "files": result[3],
+            "mem_type": result[4],
             "people": people
         }
         memories.append(memory_data)
