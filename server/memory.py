@@ -26,14 +26,24 @@ def view_memory(data):
 
     query = "SELECT * FROM Memory WHERE id = %s"
 
-    result = database_util.retrieve(query, (id,))
+    result = database_util.retrieve(query, (id,))[0]
 
+    query = "SELECT * FROM Memory_Person WHERE memory_id = %s"
+
+    result2 = database_util.retrieve(query, (id,))
+
+    people = []
+    for r in result2:
+        people.append(r[1])
+
+    
     memory_data = {
         "id": result[0],
         "title": result[1],
         "description": result[2],
         "files": result[3],
-        "mem_type": result[4]
+        "mem_type": result[4],
+        "people": people
     }
 
     return memory_data
