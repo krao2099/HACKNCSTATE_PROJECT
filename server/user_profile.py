@@ -1,7 +1,7 @@
 import database_util
 
 
-async def create_profile(data):
+def create_profile(data):
     name = data['name']
     dob = data['dob']
     bio = data['bio']
