@@ -42,7 +42,7 @@ CREATE TABLE TREE (
 );
 
 -- Insert people
-INSERT INTO Person (name, birthday, profile_picture) VALUES
+INSERT INTO Person (name, birthday, bio, profile_picture) VALUES
     ('Alice', '1990-05-15', 'Test Bio', NULL),
     ('Bob', '1985-08-22', 'Test Bio', NULL),
     ('Charlie', '1978-11-30', 'Test Bio', NULL),
