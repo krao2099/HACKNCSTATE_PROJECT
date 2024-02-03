@@ -13,3 +13,17 @@ def create_memory(data):
 
 def view_memory(data):
     id = data['id']
+
+    query = "SELECT * FROM Memory WHERE id = %s"
+
+    result = database_util.retrieve(query, (id,))
+
+    memory_data = {
+        "id": result[0],
+        "title": result[1],
+        "description": result[2],
+        "files": result[3],
+        "mem_type": result[4]
+    }
+
+    return memory_data
