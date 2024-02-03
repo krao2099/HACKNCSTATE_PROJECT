@@ -3,6 +3,7 @@ CREATE TABLE Person (
     id SERIAL PRIMARY KEY,
     name TEXT,
     birthday DATE,
+    bio TEXT, 
     profile_picture TEXT
 );
 
@@ -42,26 +43,26 @@ CREATE TABLE TREE (
 
 -- Insert people
 INSERT INTO Person (name, birthday, profile_picture) VALUES
-    ('Alice', '1990-05-15', NULL),
-    ('Bob', '1985-08-22', NULL),
-    ('Charlie', '1978-11-30', NULL),
-    ('David', '1992-03-10', NULL),
-    ('Emily', '1980-06-25', NULL),
-    ('Frank', '1987-09-18', NULL),
-    ('Grace', '1995-02-08', NULL),
-    ('Henry', '1975-04-20', NULL),
-    ('Ivy', '1998-07-12', NULL),
-    ('Jack', '1982-10-05', NULL),
-    ('Kate', '1991-12-28', NULL),
-    ('Liam', '1989-01-17', NULL),
-    ('Mia', '1993-04-03', NULL),
-    ('Noah', '1973-07-29', NULL),
-    ('Olivia', '1984-09-14', NULL),
-    ('Peter', '1996-11-09', NULL),
-    ('Quinn', '1986-01-26', NULL),
-    ('Ryan', '1977-03-15', NULL),
-    ('Sophia', '1997-06-20', NULL),
-    ('Thomas', '1988-08-02', NULL);
+    ('Alice', '1990-05-15', 'Test Bio', NULL),
+    ('Bob', '1985-08-22', 'Test Bio', NULL),
+    ('Charlie', '1978-11-30', 'Test Bio', NULL),
+    ('David', '1992-03-10', 'Test Bio', NULL),
+    ('Emily', '1980-06-25', 'Test Bio', NULL),
+    ('Frank', '1987-09-18', 'Test Bio', NULL),
+    ('Grace', '1995-02-08', 'Test Bio', NULL),
+    ('Henry', '1975-04-20', 'Test Bio', NULL),
+    ('Ivy', '1998-07-12', 'Test Bio', NULL),
+    ('Jack', '1982-10-05', 'Test Bio', NULL),
+    ('Kate', '1991-12-28', 'Test Bio', NULL),
+    ('Liam', '1989-01-17', 'Test Bio', NULL),
+    ('Mia', '1993-04-03', 'Test Bio', NULL),
+    ('Noah', '1973-07-29', 'Test Bio', NULL),
+    ('Olivia', '1984-09-14', 'Test Bio', NULL),
+    ('Peter', '1996-11-09', 'Test Bio', NULL),
+    ('Quinn', '1986-01-26', 'Test Bio', NULL),
+    ('Ryan', '1977-03-15', 'Test Bio', NULL),
+    ('Sophia', '1997-06-20', 'Test Bio', NULL),
+    ('Thomas', '1988-08-02', 'Test Bio', NULL);
 
 -- Insert relationship types
 INSERT INTO RelationshipType (name) VALUES
