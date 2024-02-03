@@ -2,7 +2,8 @@ CREATE TABLE Person (
 
     id SERIAL PRIMARY KEY,
     name TEXT,
-    birthday DATE
+    birthday DATE,
+    profile_picture TEXT
 );
 
 CREATE TABLE RelationshipType (
@@ -19,6 +20,7 @@ CREATE TABLE Relationship (
 
 CREATE TABLE Memory (
     id SERIAL PRIMARY KEY,
+    title TEXT,
     description TEXT,
     files TEXT[],
     mem_type INTEGER
@@ -37,3 +39,79 @@ CREATE TABLE Memory_Person (
 CREATE TABLE TREE (
     tree JSON
 );
+
+-- Insert people
+INSERT INTO Person (name, birthday, profile_picture) VALUES
+    ('Alice', '1990-05-15', NULL),
+    ('Bob', '1985-08-22', NULL),
+    ('Charlie', '1978-11-30', NULL),
+    ('David', '1992-03-10', NULL),
+    ('Emily', '1980-06-25', NULL),
+    ('Frank', '1987-09-18', NULL),
+    ('Grace', '1995-02-08', NULL),
+    ('Henry', '1975-04-20', NULL),
+    ('Ivy', '1998-07-12', NULL),
+    ('Jack', '1982-10-05', NULL),
+    ('Kate', '1991-12-28', NULL),
+    ('Liam', '1989-01-17', NULL),
+    ('Mia', '1993-04-03', NULL),
+    ('Noah', '1973-07-29', NULL),
+    ('Olivia', '1984-09-14', NULL),
+    ('Peter', '1996-11-09', NULL),
+    ('Quinn', '1986-01-26', NULL),
+    ('Ryan', '1977-03-15', NULL),
+    ('Sophia', '1997-06-20', NULL),
+    ('Thomas', '1988-08-02', NULL);
+
+-- Insert relationship types
+INSERT INTO RelationshipType (name) VALUES
+    ('Parent'),
+    ('Sibling');
+
+-- Insert relationships
+INSERT INTO Relationship (p1_id, p2_id, type_id) VALUES
+    (1, 2, 1), -- Alice is a parent of Bob
+    (3, 1, 1), -- Charlie is a parent of Alice
+    (3, 4, 1), -- Charlie is a parent of David
+    (5, 6, 1), -- Emily is a parent of Frank
+    (5, 7, 1), -- Emily is a parent of Grace
+    (8, 5, 1), -- Henry is a parent of Emily
+    (8, 9, 1), -- Henry is a parent of Ivy
+    (10, 11, 1), -- Jack is a parent of Kate
+    (10, 12, 1), -- Jack is a parent of Liam
+    (13, 10, 1), -- Mia is a parent of Jack
+    (13, 14, 1), -- Mia is a parent of Noah
+    (15, 13, 1), -- Olivia is a parent of Mia
+    (15, 16, 1), -- Olivia is a parent of Peter
+    (17, 15, 1), -- Quinn is a parent of Olivia
+    (17, 18, 1), -- Quinn is a parent of Ryan
+    (19, 17, 1), -- Sophia is a parent of Quinn
+    (19, 20, 1), -- Sophia is a parent of Thomas
+    (2, 3, 2), -- Bob and Alice are siblings
+    (4, 7, 2), -- David and Grace are siblings
+    (6, 9, 2), -- Frank and Ivy are siblings
+    (11, 12, 2), -- Kate and Liam are siblings
+    (14, 16, 2), -- Noah and Peter are siblings
+    (18, 20, 2); -- Ryan and Thomas are siblings
+
+-- Insert memory types
+INSERT INTO MemoryType (name) VALUES
+    ('Childhood'),
+    ('Family'),
+    ('Special Event');
+
+-- Insert memories
+INSERT INTO Memory (title, description, files, mem_type) VALUES
+    ('Alice''s Birthday', 'Alice''s birthday party', NULL, 3), -- Special event memory
+    ('Family Vacation 2000', 'Family vacation in 2000', NULL, 2), -- Family memory
+    ('Graduation Day', 'Graduation day', NULL, 3), -- Special event memory
+    ('Siblings Playing', 'David and Grace playing in the backyard', NULL, 1), -- Childhood memory
+    ('Wedding Day', 'Quinn and Ryan''s wedding', NULL, 3); -- Special event memory
+
+-- Link memories to people
+INSERT INTO Memory_Person (memory_id, person_id) VALUES
+    (1, 1), -- Alice's birthday memory
+    (2, 4), -- Family vacation memory
+    (3, 10), -- Graduation memory
+    (4, 4), -- David's childhood memory
+    (5, 18); -- Quinn and Ryan's wedding memory
