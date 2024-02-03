@@ -1,7 +1,7 @@
 import database_util
 
-def create_relationship_nojson(p1_id, p2_id, type_id):
-    query = "INSERT INTO Relationship (p1_id, p2_id, type_id) VALUES (%s, %s, %s)"
+async def create_relationship_nojson(p1_id, p2_id, type_id):
+    query = "INSERT INTO Relationship (p1_id, p2_id, type_id) VALUES (%s, %s, %s) RETURNING id"
     return database_util.execute(query, (p1_id, p2_id, type_id), retrieve=True)
 
 def create_relationship(data):
