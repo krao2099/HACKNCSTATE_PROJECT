@@ -3,20 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import './ProfileCreationForm.css'
 import Header from '../components/Header';
+import Select from 'react-select';
 
 
-const ProfileCreationForm = () => {
+const MemoryCreationForm = () => {
   const navigate = useNavigate();
 
-  const [profile, setProfile] = useState({
-    name: '',
-    dob: '',
-    gender: '',
-    bio: '',
-    pic: '',
-    p1_id: '',
-    p2_id: '',
-    relation_type: '1'
+  const [memory, setMemory] = useState({
+    title: '',
+    description: '',
+    files: [],
+    mem_type: '',
+    p_ids: [],
   });
 
   const [peopleList, setPeopleList] = useState({
@@ -44,10 +42,14 @@ const ProfileCreationForm = () => {
     fetchPeopleList();
   }, []);
 
+  const handleSelectChange = (selectedValues) => {
+    setMemory({ ...memory, p_ids: selectedValues.map(selectedValue => selectedValue.value)});
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProfile({ ...profile, [name]: value });
-    console.log(profile);
+    setMemory({ ...memory, [name]: value });
+    console.log(memory);
   };
 
   const handleFileChange = (e) => {
@@ -62,7 +64,7 @@ const ProfileCreationForm = () => {
         reader.onload = function () {
             console.log("File loaded");
             document = reader.result;
-            setProfile({ ...profile, pic:document });
+            setMemory({ ...memory, pic:document });
         }
     }
   };
@@ -77,7 +79,7 @@ const ProfileCreationForm = () => {
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
         },
-        body: JSON.stringify(profile),
+        body: JSON.stringify(memory),
       });
   
       if (!response.ok) {
@@ -97,32 +99,17 @@ const ProfileCreationForm = () => {
       <Header />
       <div className="form-container">
         <form onSubmit={handleSubmit}>
-          <div className='form-title'>Add Family Member</div>
+          <div className='form-title'>Add Memory</div>
           <div className="form-group">
             <label className='form-item'>
-              Name <br />
-              <input type="text" name="name" value={profile.name} onChange={handleChange} />
+              Title <br />
+              <input type="text" name="title" value={memory.title} onChange={handleChange} />
             </label>
           </div>
           <div className="form-group">
             <label className='form-item'>
-              Gender2 <br />
-              <select name="gender" className="selection" value={profile.gender} onChange={handleChange}>
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Nonbinary/Other</option>
-              </select>
-            </label>
-            <label className='form-item'>
-              Date of Birth <br />
-              <input type="date" name="dob" value={profile.dob} onChange={handleChange} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label className='form-item'>
-              Bio <br />
-              <textarea name="bio" className='bio-field' value={profile.bio} onChange={handleChange} />
+            description <br />
+              <textarea name="description" className='bio-field' value={memory.description} onChange={handleChange} />
             </label>
           </div>
           <div className="form-group">
@@ -133,26 +120,13 @@ const ProfileCreationForm = () => {
           </div>
           <div className="form-group">
             <label className='form-item'>
-              Parent 1 <br />
-              <select name="p1_id" className="selection" value={profile.p1_id} onChange={handleChange}>
-                <option value="">Select Parent 1</option>
-                {peopleList.people.map((person) => (
-                  <option key={person.id} value={person.id}>
-                    {person.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className='form-item'>
-              Parent 2 <br />
-              <select name="p2_id" className="selection" value={profile.p2_id} onChange={handleChange}>
-                <option value="">Select Parent 2</option>
-                {peopleList.people.map((person) => (
-                  <option key={person.id} value={person.id}>
-                    {person.name}
-                  </option>
-                ))}
-              </select>
+              Persons <br />
+              <Select
+                options={peopleList.people.map(person => ({ value: person.id, label: person.name }))}
+                isMulti
+                value={memory.p_ids.map(p_id => ({ value: p_id, label: peopleList.people.find(person => person.id === p_id).name }))}
+                onChange={handleSelectChange}
+              />
             </label>
           </div>
           <div className="form-group">
@@ -166,4 +140,4 @@ const ProfileCreationForm = () => {
   );
 };
 
-export default ProfileCreationForm;
+export default MemoryCreationForm;
