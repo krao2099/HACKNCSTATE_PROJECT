@@ -79,9 +79,11 @@ const Profile = () => {
         </div>
         <div id="feed">
             <h2>{profile.name}'s Memories</h2>
-            {memories.memArray.map(memory => (
-                <FeedCard title={memory.title} description={memory.description} people = {memory.people}></FeedCard>
-            ))}
+            <div id="profile-feed-scroller">
+                {memories.memArray.map(memory => (
+                    <FeedCard title={memory.title} description={memory.description} people = {memory.people}></FeedCard>
+                ))}
+            </div>
         </div>
     </div>
     
