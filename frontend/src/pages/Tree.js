@@ -126,6 +126,10 @@ function initDiagram() {
             },
             new go.Binding("text", "", tooltipTextConverter))
         );
+        diagram.linkTemplate =
+        $(go.Link,       // the whole link panel
+          $(go.Shape)  // the link shape, default black stroke
+        );
   // define a simple Node template
   //TODO update the shape styling for the "marriage" nodes (use binding like with gender)
   diagram.nodeTemplate =
