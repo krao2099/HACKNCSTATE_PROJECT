@@ -115,8 +115,7 @@ function initDiagram() {
   const marriageTemplate =
     $(go.Node, "Auto",
       $(go.Shape, "Rectangle",
-        {
-          row: 0, column: 0, fill: "#424242",
+        { row: 0, column: 0, fill: "#424242",
           width: 3, height: 0
         }),
     );
@@ -125,9 +124,10 @@ function initDiagram() {
   const diagram =
     $(go.Diagram,
       {
+        'allowCopy': false,
         'undoManager.isEnabled': true,  // must be set to allow for model change listening
         // 'undoManager.maxHistoryLength': 0,  // uncomment disable undo/redo functionality
-        'clickCreatingTool.archetypeNodeData': { text: 'new node', color: 'lightblue' },
+        // 'clickCreatingTool.archetypeNodeData': { text: 'new node', color: 'lightblue' },
         model: new go.GraphLinksModel(
           {
             linkKeyProperty: 'key'  // IMPORTANT! must be defined for merges and data sync when using GraphLinksModel
@@ -137,19 +137,6 @@ function initDiagram() {
           $(go.LayeredDigraphLayout,
             { direction: 90, initializeOption: go.LayeredDigraphLayout.InitDepthFirstOut })
       });
-
-  // define tooltips for nodes
-  var tooltiptemplate =
-    $("ToolTip",
-      { "Border.fill": "whitesmoke", "Border.stroke": "black" },
-      $(go.TextBlock,
-        {
-          font: "bold 8pt Helvetica, bold Arial, sans-serif",
-          wrap: go.TextBlock.WrapFit,
-          margin: 5
-        },
-        new go.Binding("text", "", tooltipTextConverter))
-    );
   
   diagram.linkTemplate =
     $(go.Link,  // the whole link panel
@@ -164,7 +151,7 @@ function initDiagram() {
 
   diagram.nodeTemplate =
     $(go.Node, "Auto",
-      { deletable: false, toolTip: tooltiptemplate, isClipping: true },
+      { deletable: false,  isClipping: true },
       // new go.Binding("text", "name"),
       $(go.Shape, "Circle",
         {
