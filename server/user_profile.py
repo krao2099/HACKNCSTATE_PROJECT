@@ -28,5 +28,10 @@ def view_profile(id):
     return person_data
 
 def view_all_profile():
+    response = {}
+    response['profiles'] = []
     query = "SELECT id, name FROM Person"
-    return database_util.retrieve(query, None)
+    data = database_util.retrieve(query, None)
+    for profile in data:
+        response['profiles'].append({'id':profile[0], 'name':profile[1]})
+    return response
