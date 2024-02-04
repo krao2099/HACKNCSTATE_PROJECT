@@ -69,7 +69,6 @@ INSERT INTO Person (name, birthday, bio, profile_picture, gender) VALUES
 -- Insert relationship types
 INSERT INTO RelationshipType (name) VALUES
     ('Parent'),
-    ('Sibling'),
     ('Married');
 
 -- Insert relationships
