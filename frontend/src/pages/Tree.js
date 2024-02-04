@@ -151,14 +151,14 @@ function initDiagram() {
           }),
           // layout: $(go.TreeLayout)
           layout:  // create a TreeLayout for the family tree
-          $(go.TreeLayout,
-            { angle: 90, nodeSpacing: 10, layerSpacing: 40, layerStyle: go.TreeLayout.LayerUniform, sorting: go.TreeLayout.SortingDescending })
+          $(go.LayeredDigraphLayout,
+            { direction: 90 })
       });
 
       // define tooltips for nodes
       var tooltiptemplate =
         $("ToolTip",
-          { "Border.fill": "whitesmoke", "Border.stroke": "black" },
+           { "Border.fill": "whitesmoke", "Border.stroke": "black" },
           $(go.TextBlock,
             {
               font: "bold 8pt Helvetica, bold Arial, sans-serif",

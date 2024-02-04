@@ -29,6 +29,17 @@
     padding: 20px;
     margin: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+#card_content {
+    float: left;
+}
+
+#card_image {
+    float:right;
 }
 
 #title {
