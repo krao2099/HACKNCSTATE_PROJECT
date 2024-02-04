@@ -13,8 +13,9 @@ import Header from '../components/Header';
 
 const Tree = () => {
   //trying to convert the data to proper format
+  //To = child, From = parent
   var nodeDataArray1 = [
-    { key: 1, name: 'Dad',  picture: "photo", gender: "male/female/other"},
+    { key: 1, name: 'Dad',  picture: "photo", gender: "M"},
     { key: 2, name: 'Mom', picture: "photo", gender: "F"},
     { key: 3, name: 'Child A', picture: "photo", gender: "M"},
     { key: 4, name: 'Child B', picture: "photo", gender: "male/female/other"},
@@ -54,7 +55,7 @@ const Tree = () => {
   }, []);
   
   var key1 = linkDataArray1.length * -1 - 1;
-  var toRemove =[];
+  var checked =[];
   linkDataArray1.forEach(async (link) => {
     if (link.type == 2) {
       // console.log(data)
@@ -74,7 +75,14 @@ const Tree = () => {
     if (node.nodeType) {
       linkDataArray1.forEach(async (link) => {
         if ((link.from == node.parentA || link.from == node.parentB) && link.type) {
-          link.from = node.key
+          if (checked.includes(link.to)) {
+            link.to = 0
+            link.from = 0
+          } else {
+            link.from = node.key
+            checked.push(link.to)
+          }
+          
         }
       })
     }
@@ -133,9 +141,10 @@ function initDiagram() {
           {
             linkKeyProperty: 'key'  // IMPORTANT! must be defined for merges and data sync when using GraphLinksModel
           }),
+          // layout: $(go.TreeLayout)
           layout:  // create a TreeLayout for the family tree
           $(go.TreeLayout,
-            { angle: 90, nodeSpacing: 10, layerSpacing: 40, layerStyle: go.TreeLayout.LayerUniform })
+            { angle: 90, nodeSpacing: 10, layerSpacing: 40, layerStyle: go.TreeLayout.LayerUniform, sorting: go.TreeLayout.SortingDescending })
       });
 
       // define tooltips for nodes
