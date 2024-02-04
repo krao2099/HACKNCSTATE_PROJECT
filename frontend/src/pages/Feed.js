@@ -36,11 +36,14 @@ const Feed = () => {
   return (
     <div>
         <Header />
-        <div id="feed">
+        <div id="main-feed">
             <h1>Family Memories</h1>
-            {memories.memArray.map(memory => (
-                <FeedCard title={memory.title} description={memory.description} people = {memory.people}></FeedCard>
-            ))}
+
+            <div id = "main-feed-scroller">
+                {memories.memArray.map(memory => (
+                    <FeedCard title={memory.title} description={memory.description} people = {memory.people} file = {memory.files}></FeedCard>
+                ))}
+            </div>
         </div>
     </div>
     
