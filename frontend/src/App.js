@@ -6,6 +6,7 @@ import ProfileCreationForm from './pages/ProfileCreationForm';
 import MemoryCreationForm from './pages/MemoryCreationForm';
 import Profile from './pages/Profile';
 import RelationForm from './pages/RelationForm';
+import Feed from './pages/Feed';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/add_memory" element={<MemoryCreationForm />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/add_relation" element={<RelationForm />} />
+        <Route path="/feed" element={<Feed />} />
       </Routes>
     </Router>
   );
