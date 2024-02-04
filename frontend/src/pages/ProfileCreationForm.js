@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useNavigate } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import './ProfileCreationForm.css'
 import Header from '../components/Header';
@@ -19,7 +20,7 @@ const ProfileCreationForm = () => {
   });
 
   const [peopleList, setPeopleList] = useState({
-    people: [{ id: '1', name: 'Parent Name 1' }, { id: '2', name: 'Parent Name 2' }]
+    people: []
   });
 
   useEffect(() => {
@@ -85,7 +86,7 @@ const ProfileCreationForm = () => {
   
       const data = await response.json();
       console.log('Success:', data);
-      navigate('/success-page');
+      navigate('/');
     } catch (error) {
       console.error('Error:', error);
     }
