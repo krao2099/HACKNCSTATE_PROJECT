@@ -1,9 +1,7 @@
 version: '3'
 services:
   db:
-    build:
-      dockerfile: Dockerfile
-      context: ./database
+    image: postgres:latest
     user: postgres
     environment:
       POSTGRES_DB: crux_db
@@ -18,7 +16,7 @@ services:
     
   server:
     build:
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
       context: ./server
     volumes:
       - ./server:/src
@@ -29,7 +27,7 @@ services:
   
   web:
     build:
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
       context: ./frontend
     volumes:
       - ./frontend:/app
