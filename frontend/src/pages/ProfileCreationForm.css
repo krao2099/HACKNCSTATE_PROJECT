@@ -1,6 +1,6 @@
 .page-background {
     background-color: #f0f0f0; /* Light gray background */
-    padding-top: 20px; /* Top padding */
+    padding-top: 80px; /* Top padding */
     min-height: 100vh; /* Make sure it covers the full page height */
     display: flex;
     flex-direction: column; /* Stack children vertically */

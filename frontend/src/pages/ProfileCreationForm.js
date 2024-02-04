@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import './ProfileCreationForm.css'
+import Header from '../components/Header';
+
 
 const ProfileCreationForm = () => {
+  const navigate = useNavigate();
+
   const [profile, setProfile] = useState({
     name: '',
     dob: '',
@@ -15,7 +20,7 @@ const ProfileCreationForm = () => {
   });
 
   const [peopleList, setPeopleList] = useState({
-    people: [{ id: '1', name: 'Parent Name 1' }, { id: '2', name: 'Parent Name 2' }]
+    people: []
   });
 
   useEffect(() => {
@@ -29,7 +34,8 @@ const ProfileCreationForm = () => {
         }
         const data = await response.json();
         console.log(data);
-        setPeopleList({ people: data });
+        setPeopleList({ people: data.profiles });
+        console.log("peopleList", peopleList.people)
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
       }
@@ -41,6 +47,7 @@ const ProfileCreationForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProfile({ ...profile, [name]: value });
+    console.log(profile);
   };
 
   const handleFileChange = (e) => {
@@ -79,6 +86,7 @@ const ProfileCreationForm = () => {
   
       const data = await response.json();
       console.log('Success:', data);
+      navigate('/');
     } catch (error) {
       console.error('Error:', error);
     }
@@ -86,6 +94,7 @@ const ProfileCreationForm = () => {
 
   return (
     <div className="page-background">
+      <Header />
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className='form-title'>Add Family Member</div>
@@ -138,6 +147,11 @@ const ProfileCreationForm = () => {
               Parent 2 <br />
               <select name="p2_id" className="selection" value={profile.p2_id} onChange={handleChange}>
                 <option value="">Select Parent 2</option>
+                {peopleList.people.map((person) => (
+                  <option key={person.id} value={person.id}>
+                    {person.name}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
