@@ -25,7 +25,7 @@ CREATE TABLE Memory (
     id SERIAL PRIMARY KEY,
     title TEXT,
     description TEXT,
-    files TEXT[],
+    file TEXT,
     mem_type INTEGER
 );
 
@@ -104,7 +104,7 @@ INSERT INTO MemoryType (name) VALUES
     ('Special Event');
 
 -- Insert memories
-INSERT INTO Memory (title, description, files, mem_type) VALUES
+INSERT INTO Memory (title, description, file, mem_type) VALUES
     ('Alices Birthday', 'Alices birthday party', NULL, 3), -- Special event memory
     ('Alices Birthday 2', 'Alices birthday party', NULL, 3), -- Special event memory
     ('Family Vacation 2000', 'Family vacation in 2000', NULL, 2), -- Family memory

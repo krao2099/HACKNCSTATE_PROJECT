@@ -3,14 +3,14 @@ import database_util
 def create_memory(data):
     title = data['title']
     description = data['description']
-    files = data['files']
+    file = data['file']
     mem_type = data['mem_type']
     p_ids = data['p_ids']
     
 
-    query = "INSERT INTO Memory (title, description, files, mem_type) VALUES (%s, %s, %s, %s) RETURNING id"
+    query = "INSERT INTO Memory (title, description, file, mem_type) VALUES (%s, %s, %s, %s) RETURNING id"
 
-    id = database_util.execute(query, (title, description, files, mem_type), retrieve=True)
+    id = database_util.execute(query, (title, description, file, mem_type), retrieve=True)
 
     query = "INSERT INTO Memory_Person (memory_id, person_id) VALUES (%s, %s)"
 
@@ -48,7 +48,7 @@ def view_memory(id):
 
 def get_memories_person(p_id):
 
-    query = "SELECT mem.id, mem.title, mem.description, mem.files, mem.mem_type FROM Memory_Person AS mp JOIN Memory AS mem ON mp.memory_id = mem.id WHERE mp.person_id = %s"
+    query = "SELECT mem.id, mem.title, mem.description, mem.file, mem.mem_type FROM Memory_Person AS mp JOIN Memory AS mem ON mp.memory_id = mem.id WHERE mp.person_id = %s"
 
 
     results = database_util.retrieve(query, (p_id,))
@@ -79,7 +79,7 @@ def get_memories_person(p_id):
 
 def get_memories_all():
 
-    query = "SELECT mem.id, mem.title, mem.description, mem.files, mem.mem_type FROM Memory AS mem"
+    query = "SELECT mem.id, mem.title, mem.description, mem.file, mem.mem_type FROM Memory AS mem"
 
 
     results = database_util.retrieve(query, ())

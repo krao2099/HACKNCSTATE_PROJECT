@@ -12,14 +12,16 @@ const MemoryCreationForm = () => {
   const [memory, setMemory] = useState({
     title: '',
     description: '',
-    files: [],
-    mem_type: '',
+    file: "",
+    mem_type: '1',
     p_ids: [],
   });
 
   const [peopleList, setPeopleList] = useState({
     people: []
   });
+
+  const memory_types = [{id: '1', type: 'childhood'}, {id: '2', type: 'Family'}, {id: '3', type: 'Special Event'}]
 
   useEffect(() => {
     const fetchPeopleList = async () => {
@@ -71,7 +73,7 @@ const MemoryCreationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const apiURL = 'http://localhost:80/api/profile'
+    const apiURL = 'http://localhost:80/api/memory'
 
     try {
       const response = await fetch(apiURL, {
@@ -127,6 +129,18 @@ const MemoryCreationForm = () => {
                 value={memory.p_ids.map(p_id => ({ value: p_id, label: peopleList.people.find(person => person.id === p_id).name }))}
                 onChange={handleSelectChange}
               />
+            </label>
+          </div>
+          <div className='form-group'>
+            <label className='form-item'>
+              Memory Type <br />
+              <select name="mem_type" className="selection" value={memory.mem_type} onChange={handleChange}>
+                  {memory_types.map((m) => (
+                    <option key={m.id} value={m.id}>
+                      {m.type}
+                    </option>
+                  ))}
+              </select>
             </label>
           </div>
           <div className="form-group">
