@@ -29,7 +29,8 @@ const ProfileCreationForm = () => {
         }
         const data = await response.json();
         console.log(data);
-        setPeopleList({ people: data });
+        setPeopleList({ people: data.profiles });
+        console.log("peopleList", peopleList.people)
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
       }
@@ -41,6 +42,7 @@ const ProfileCreationForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProfile({ ...profile, [name]: value });
+    console.log(profile);
   };
 
   const handleFileChange = (e) => {
@@ -138,6 +140,11 @@ const ProfileCreationForm = () => {
               Parent 2 <br />
               <select name="p2_id" className="selection" value={profile.p2_id} onChange={handleChange}>
                 <option value="">Select Parent 2</option>
+                {peopleList.people.map((person) => (
+                  <option key={person.id} value={person.id}>
+                    {person.name}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
