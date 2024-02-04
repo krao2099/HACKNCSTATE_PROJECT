@@ -25,7 +25,7 @@ const AboutUs = () => {
               </div>
               <div >
                 <h2>Project Links</h2>
-                <a id="devpost" href="DEVPOST"><img src="https://d2dmyh35ffsxbl.cloudfront.net/assets/reimagine2/devpost-logo-25d0005ec83e3b9ef6fce93235bb6d642d7c828f31758ebdb5b7ee87de7d45c3.svg"/></a>
+                <a id="devpost" href="https://devpost.com/software/roots-rings"><img src="https://d2dmyh35ffsxbl.cloudfront.net/assets/reimagine2/devpost-logo-25d0005ec83e3b9ef6fce93235bb6d642d7c828f31758ebdb5b7ee87de7d45c3.svg"/></a>
                 <a href="https://github.com/krao2099/HACKNCSTATE_PROJECT"><img src="https://static.vecteezy.com/system/resources/previews/016/833/880/non_2x/github-logo-git-hub-icon-with-text-on-white-background-free-vector.jpg"/></a>
               </div>
               
