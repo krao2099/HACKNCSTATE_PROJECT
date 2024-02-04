@@ -1,4 +1,4 @@
-#Roots and Rings
+# Roots and Rings
 
 ## About 
 Roots & Rings is a family tree and memory sharing app designed to help you connect with your family and share memories with them.
