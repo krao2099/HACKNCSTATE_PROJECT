@@ -13,48 +13,50 @@ import Header from '../components/Header';
 
 const Tree = () => {
   //trying to convert the data to proper format
-  const nodeDataArray1 = [
-    [ "0", 'Dad', 'lightblue', "" , "photo", "male/female/other", "person"],
-    [ "1", 'Mom', 'birth', "bio" , "photo", "male/female/other", "person"],
-    [ "2", 'Child A', 'lightblue', "" , "photo", "male/female/other", "person"],
-    [ "3", 'Child B', 'lightblue', "" , "photo", "male/female/other", "person"]
+  var nodeDataArray1 = [
+    { key: 1, name: 'Dad',  picture: "photo", gender: "male/female/other"},
+    { key: 2, name: 'Mom', picture: "photo", gender: "F"},
+    { key: 3, name: 'Child A', picture: "photo", gender: "M"},
+    { key: 4, name: 'Child B', picture: "photo", gender: "male/female/other"},
+    { key: 5, name: 'Child C', picture: "photo", gender: "male/female/other"}
   ];
-  const linkDataArray1 = [
-    [1, 0, 2, 1],
-    [2, 0, 1, 2],
-    [3, 1, 3, 1]
+
+  var linkDataArray1 = [
+    { key: -1, from: 1, to: 2, type: 2 },
+    { key: -2, from: 3, to: 1, type: 1 },
+    { key: -3, from: 3, to: 2, type: 1},
+    { key: -4, from: 4, to: 1, type: 1 },
+    { key: -5, from: 4, to: 2, type: 1 },
+    { key: -6, from: 5, to: 2, type: 1 },
+    { key: -7, from: 5, to: 1, type: 1 }
   ];
-  var linkDataArray2 = []
-  var nodeDataArray2 = []
-  nodeDataArray1.forEach(async (data) => {
-    nodeDataArray2.push({ key: parseInt(data[0]), name: data[1], birthday: data[2], bio: data[3] , picture: data[4], gender: data[5], nodeType: "person"})
-  })
   
-  var key1 = -1
-  linkDataArray1.forEach(async (data) => {
-    if (data[3] != 1) {
-      linkDataArray2.push({key: key1, from: data[2], to: data[1]})
-      key1--
-    } else {
+  var key1 = linkDataArray1.length * -1 - 1;
+  var parents =[];
+  linkDataArray1.forEach(async (link) => {
+    if (link.type == 2) {
       // console.log(data)
       // console.log(data[3])
-      var length = nodeDataArray2.length;
-      nodeDataArray2.push({ key: length, nodeType: "marriage"})
-      linkDataArray2.push({key: key1, from: data[2], to: length})
+      var length = nodeDataArray1.length + 1;
+
+      nodeDataArray1.push({ key: length, nodeType: "marriage", parentA: link.to, parentB: link.from})
+      linkDataArray1.push({key: key1, from: link.to, to: length})
       key1--
-      linkDataArray2.push({key: key1, from: data[3], to: length})
+      linkDataArray1.push({key: key1, from: link.from, to: length})
       key1--
-      nodeDataArray2.forEach(async (data) => {
-        if (data.to == data[3] || data.to == data[3]) {
-          data.to = length
+    }
+  })
+  nodeDataArray1.forEach(async (node) => {
+    if (node.nodeType) {
+      linkDataArray1.forEach(async (link) => {
+        if (link.to == node.parentA || link.to == node.parentB) {
+          link.to = node.key
         }
       })
-      
     }
-    
   })
-  console.log(nodeDataArray2)
-  console.log(linkDataArray2)
+  console.log(nodeDataArray1)
+  console.log(linkDataArray1)
 
     return (
         <div >
@@ -63,20 +65,22 @@ const Tree = () => {
               initDiagram={initDiagram}
               divClassName='diagram-component'
               //Dummy Data
-              nodeDataArray={[
-                { key: 0, name: 'Dad', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other", nodeType: "person"},
-                { key: 1, name: 'Mom', birthday: 'lightblue', bio: "" , picture: "photo", gender: "F"},
-                { key: 2, name: 'Child A', birthday: 'lightblue', bio: "" , picture: "photo", gender: "M"},
-                { key: 3, name: 'Child B', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"},
-                { key: 4, name: 'Child C', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"}
-              ]}
-              linkDataArray={[
-                { key: -1, from: 0, to: 1 },
-                { key: -2, from: 0, to: 2 },
-                { key: -3, from: 1, to: 1 },
-                { key: -4, from: 2, to: 3 },
-                { key: -5, from: 3, to: 0 }
-              ]}
+              nodeDataArray={nodeDataArray1}
+              linkDataArray={linkDataArray1}
+              // nodeDataArray={[
+              //   { key: 0, name: 'Dad', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other", nodeType: "person"},
+              //   { key: 1, name: 'Mom', birthday: 'lightblue', bio: "" , picture: "photo", gender: "F"},
+              //   { key: 2, name: 'Child A', birthday: 'lightblue', bio: "" , picture: "photo", gender: "M"},
+              //   { key: 3, name: 'Child B', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"},
+              //   { key: 4, name: 'Child C', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"}
+              // ]}
+              // linkDataArray={[
+              //   { key: -1, from: 0, to: 1 },
+              //   { key: -2, from: 0, to: 2 },
+              //   { key: -3, from: 1, to: 1 },
+              //   { key: -4, from: 2, to: 3 },
+              //   { key: -5, from: 3, to: 0 }
+              // ]}
               onModelChange={handleModelChange}
             />
             <a class="new-link">
@@ -130,11 +134,10 @@ function initDiagram() {
           // new go.Binding("text", "name"),
           $(go.Shape, "Circle",
             {
-              //TODO Change this for marriage nodes so its small
               fill: "lightgray",
               stroke: null, strokeWidth: 0,
               stretch: go.GraphObject.Fill,
-              alignment: go.Spot.Center
+              alignment: go.Spot.Top
             },
             //Color
             new go.Binding("fill", "gender", genderBrushConverter)),
