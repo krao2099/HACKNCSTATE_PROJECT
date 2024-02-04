@@ -9,5 +9,5 @@ Roots & Rings is a family tree and memory sharing app designed to help you conne
 3. Ensure that no other process is running on port 80. Then run ```docker compose up```
 4. Wait for start up then navigate to [localhost](http://localhost/)
 
-*Note: Sample data has been hardcoded into /database/init.sql. Start on line 46*
+*Note: Sample data has been hardcoded into /database/init.sql. Starts on line 46*
 
