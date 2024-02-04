@@ -88,10 +88,10 @@ const Tree = () => {
       <ReactDiagram
         initDiagram={initDiagram}
         divClassName='diagram-component'
-        nodeDataArray={nodeDataArray1.nda1}
-        linkDataArray={linkDataArray1.lda1}
-        // nodeDataArray={getNode()}
-        // linkDataArray={getLink()}
+        // nodeDataArray={nodeDataArray1.nda1}
+        // linkDataArray={linkDataArray1.lda1}
+        nodeDataArray={getNode()}
+        linkDataArray={getLink()}
 
         onModelChange={handleModelChange}
       />
@@ -176,35 +176,6 @@ function initDiagram() {
         },
         new go.Binding("text", "name"))
     );
-
-  //Legend
-  diagram.add(
-    $(go.Part, "Table",
-      { position: new go.Point(100, 10), selectable: false },
-      $(go.TextBlock, "Key",
-        { row: 0, font: "700 14px Droid Serif, sans-serif" }),  // end row 0
-      $(go.Panel, "Horizontal",
-        { row: 1, alignment: go.Spot.Left },
-        $(go.Shape, "Circle",
-          { desiredSize: new go.Size(30, 30), fill: bluegrad, margin: 5 }),
-        $(go.TextBlock, "Males",
-          { font: "700 13px Droid Serif, sans-serif" })
-      ),  // end row 1
-      $(go.Panel, "Horizontal",
-        { row: 2, alignment: go.Spot.Left },
-        $(go.Shape, "Circle",
-          { desiredSize: new go.Size(30, 30), fill: pinkgrad, margin: 5 }),
-        $(go.TextBlock, "Females",
-          { font: "700 13px Droid Serif, sans-serif" })
-      ),  // end row 2
-      $(go.Panel, "Horizontal",
-        { row: 3, alignment: go.Spot.Left },
-        $(go.Shape, "Circle",
-          { desiredSize: new go.Size(30, 30), fill: "orange", margin: 5 }),
-        $(go.TextBlock, "Other/Non-binary",
-          { font: "700 13px Droid Serif, sans-serif" })
-      )  // end row 3
-    ));
 
   diagram.addDiagramListener("ObjectSingleClicked",
     e => {

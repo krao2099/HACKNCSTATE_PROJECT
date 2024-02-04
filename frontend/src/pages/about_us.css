@@ -21,3 +21,21 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+#main-feed .sources {
+    display: flex;
+    width: 60%;
+    margin-left: 13%;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+
+#main-feed .sources img {
+    height: 75px;
+}
+
+#main-feed .sources #devpost img {
+    padding: 200px;
+}
