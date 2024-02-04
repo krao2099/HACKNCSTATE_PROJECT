@@ -51,7 +51,7 @@ const Tree = () => {
             // console.log(data[3])
             var length = updatedNodeDataArray1.length + 1;
       
-            updatedNodeDataArray1.push({ key: length, nodeType: "marriage", parentA: link.to, parentB: link.from})
+            updatedNodeDataArray1.push({ key: length, nodeType: "marriage", category: "simple", parentA: link.to, parentB: link.from})
             // linkDataArray1.push({key: key1, from: length, to: link.to})
             
             updatedLinkDataArray1.push({key: key1, from: link.to, to: length})
