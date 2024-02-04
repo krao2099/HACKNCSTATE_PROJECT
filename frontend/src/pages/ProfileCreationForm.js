@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useNavigate } from 'react';
 import Button from 'react-bootstrap/Button';
 import './ProfileCreationForm.css'
+import Header from '../components/Header';
+
 
 const ProfileCreationForm = () => {
+  const navigate = useNavigate();
+
   const [profile, setProfile] = useState({
     name: '',
     dob: '',
@@ -81,6 +85,7 @@ const ProfileCreationForm = () => {
   
       const data = await response.json();
       console.log('Success:', data);
+      navigate('/success-page');
     } catch (error) {
       console.error('Error:', error);
     }
@@ -88,6 +93,7 @@ const ProfileCreationForm = () => {
 
   return (
     <div className="page-background">
+      <Header />
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className='form-title'>Add Family Member</div>
