@@ -1,0 +1,70 @@
+.page-background {
+    background-color: #f0f0f0; /* Light gray background */
+    padding-top: 80px; /* Top padding */
+    min-height: 100vh; /* Make sure it covers the full page height */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+}
+  
+.form-container {
+    background-color: #ffffff; /* White background for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Adjust based on your preference */
+    margin-left: auto; /* Centering the form horizontally */
+    margin-right: auto; /* Centering the form horizontally */
+    margin-top: 20px; /* Space from the top of the page */
+}
+  
+.form-group {
+    display: flex;
+    justify-content: space-between; /* This spreads out the child elements across the available space */
+    align-items: center; 
+    margin-bottom: 15px; /* Spacing between form elements */
+    width: 100%;
+}
+
+.form-title {
+    font-size: 26px;
+    color: #005500;
+    width: 100%;
+    min-width: 100%;
+    text-align: center;
+    font-weight: bold;
+    margin: 8px 8px 16px;
+}
+
+.green-button {
+    background-color: #005500 !important; /* Green color */
+    border-color: #005500 !important;
+    margin: 16px 8px 0px;
+    width: 100%;
+    padding: 6px 0px !important;
+}
+
+.green-button:hover {
+    background-color: #004400 !important; /* Darker shade for hover */
+    border-color: #004400 !important;
+    margin: 16px 8px 0px;
+    width: 100%;
+    padding: 6px 0px !important;
+}
+
+.form-item {
+    flex: 1;
+    margin: 0px 8px 0px;
+}
+
+.form-item input {
+    width: 100%; /* Makes the input fields take up all available space within the label */
+}
+
+.bio-field {
+    width: 100%;
+}
+
+.selection {
+    width: 100%;
+}

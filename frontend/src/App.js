@@ -5,6 +5,7 @@ import Tree from './pages/Tree';
 import ProfileCreationForm from './pages/ProfileCreationForm';
 import MemoryCreationForm from './pages/MemoryCreationForm';
 import Profile from './pages/Profile';
+import RelationForm from './pages/RelationForm';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/add_person" element={<ProfileCreationForm />} />
         <Route path="/add_memory" element={<MemoryCreationForm />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/add_relation" element={<RelationForm />} />
       </Routes>
     </Router>
   );

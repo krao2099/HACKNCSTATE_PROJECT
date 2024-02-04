@@ -90,12 +90,12 @@ INSERT INTO Relationship (p1_id, p2_id, type_id) VALUES
     (17, 18, 1), -- Quinn is a parent of Ryan
     (19, 17, 1), -- Sophia is a parent of Quinn
     (19, 20, 1), -- Sophia is a parent of Thomas
-    (2, 3, 2), -- Bob and Alice are siblings
-    (4, 7, 2), -- David and Grace are siblings
-    (6, 9, 2), -- Frank and Ivy are siblings
-    (11, 12, 2), -- Kate and Liam are siblings
-    (14, 16, 2), -- Noah and Peter are siblings
-    (18, 20, 2); -- Ryan and Thomas are siblings
+    (2, 3, 2), -- Bob and Alice are married
+    (4, 7, 2), -- David and Grace are married
+    (6, 9, 2), -- Frank and Ivy are married
+    (11, 12, 2), -- Kate and Liam are married
+    (14, 16, 2), -- Noah and Peter are married
+    (18, 20, 2); -- Ryan and Thomas are married
 
 -- Insert memory types
 INSERT INTO MemoryType (name) VALUES
