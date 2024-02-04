@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './Feed.css'
+import './Profile.css'
 
-const Feed = () => {
+const Profile = () => {
+
+    const [profile, setProfile] = useState({
+        bio: '',
+        birthday: '',
+        gender: '',
+        id: '',
+        name: '',
+        profile_picture: ''
+      });
+
     useEffect(() => {
         const loadData = async (e) => {
             try {
@@ -19,19 +29,23 @@ const Feed = () => {
             
                 const data = await response.json();
                 console.log('Success:', data);
-                return data;
+                setProfile(data);
             } catch (error) {
                 console.error('Error:', error);
             }
         }
         loadData();
-    })
+    }, []);
 
   return (
     <div>
-        <p>Stupid ass bitch</p>
+        <h1>{profile.name}</h1>
+        <p>{profile.birthday} | {profile.gender}</p>
+        <img src={profile.profile_picture} alt="profile pic"></img>
+
+        <p>{profile.bio}</p>
     </div>
   );
 };
 
-export default Feed;
+export default Profile;
