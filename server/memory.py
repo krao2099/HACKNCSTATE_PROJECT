@@ -8,7 +8,7 @@ def create_memory(data):
     p_ids = data['p_ids']
     
 
-    query = "INSERT INTO Memory (title, description, files, mem_type) VALUES (%s, %s, %s, %s) RETURNING id"
+    query = "INSERT INTO Memory (title, description, file, mem_type) VALUES (%s, %s, %s, %s) RETURNING id"
 
     id = database_util.execute(query, (title, description, file, mem_type), retrieve=True)
 
@@ -79,7 +79,7 @@ def get_memories_person(p_id):
 
 def get_memories_all():
 
-    query = "SELECT mem.id, mem.title, mem.description, mem.files, mem.mem_type FROM Memory AS mem"
+    query = "SELECT mem.id, mem.title, mem.description, mem.file, mem.mem_type FROM Memory AS mem"
 
 
     results = database_util.retrieve(query, ())

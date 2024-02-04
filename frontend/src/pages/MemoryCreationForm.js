@@ -12,8 +12,8 @@ const MemoryCreationForm = () => {
   const [memory, setMemory] = useState({
     title: '',
     description: '',
-    files: "",
-    mem_type: '',
+    file: "",
+    mem_type: '1',
     p_ids: [],
   });
 
@@ -71,7 +71,7 @@ const MemoryCreationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const apiURL = 'http://localhost:80/api/profile'
+    const apiURL = 'http://localhost:80/api/memory'
 
     try {
       const response = await fetch(apiURL, {
