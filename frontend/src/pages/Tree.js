@@ -214,6 +214,12 @@ function initDiagram() {
           { font: "700 13px Droid Serif, sans-serif" })
       )  // end row 3
     ));
+
+    diagram.addDiagramListener("ObjectSingleClicked",
+    e => {
+      let id = e.subject.part.data.key
+      window.location.href = "http://localhost/profile?pid=" + id;
+    });
     
   return diagram;
 }
@@ -246,5 +252,6 @@ function tooltipTextConverter(person) {
 function handleModelChange(changes) {
   // alert('GoJS model changed!');
 }
+
 
 export default Tree;
