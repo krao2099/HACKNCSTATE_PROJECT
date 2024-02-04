@@ -22,17 +22,17 @@ const Tree = () => {
   ];
 
   var linkDataArray1 = [
-    { key: -1, from: 1, to: 2, type: 2 },
-    { key: -2, from: 3, to: 1, type: 1 },
-    { key: -3, from: 3, to: 2, type: 1},
-    { key: -4, from: 4, to: 1, type: 1 },
-    { key: -5, from: 4, to: 2, type: 1 },
-    { key: -6, from: 5, to: 2, type: 1 },
-    { key: -7, from: 5, to: 1, type: 1 }
+    { key: -1, to: 1, from: 2, type: 2 },
+    { key: -2, to: 3, from: 1, type: 1 },
+    { key: -3, to: 3, from: 2, type: 1},
+    { key: -4, to: 4, from: 1, type: 1 },
+    { key: -5, to: 4, from: 2, type: 1 },
+    { key: -6, to: 5, from: 2, type: 1 },
+    { key: -7, to: 5, from: 1, type: 1 }
   ];
   
   var key1 = linkDataArray1.length * -1 - 1;
-  var parents =[];
+  var toRemove =[];
   linkDataArray1.forEach(async (link) => {
     if (link.type == 2) {
       // console.log(data)
@@ -40,17 +40,19 @@ const Tree = () => {
       var length = nodeDataArray1.length + 1;
 
       nodeDataArray1.push({ key: length, nodeType: "marriage", parentA: link.to, parentB: link.from})
+      // linkDataArray1.push({key: key1, from: length, to: link.to})
+      
       linkDataArray1.push({key: key1, from: link.to, to: length})
-      key1--
-      linkDataArray1.push({key: key1, from: link.from, to: length})
+      link.to = length
+      link.type = false
       key1--
     }
   })
   nodeDataArray1.forEach(async (node) => {
     if (node.nodeType) {
       linkDataArray1.forEach(async (link) => {
-        if (link.to == node.parentA || link.to == node.parentB) {
-          link.to = node.key
+        if ((link.from == node.parentA || link.from == node.parentB) && link.type) {
+          link.from = node.key
         }
       })
     }
@@ -127,9 +129,9 @@ function initDiagram() {
             new go.Binding("text", "", tooltipTextConverter))
         );
         diagram.linkTemplate =
-        $(go.Link,       // the whole link panel
-          $(go.Shape)  // the link shape, default black stroke
-        );
+        $(go.Link,  // the whole link panel
+          { routing: go.Link.Orthogonal, corner: 5, selectable: false },
+          $(go.Shape, { strokeWidth: 3, stroke: '#424242' }));  
   // define a simple Node template
   //TODO update the shape styling for the "marriage" nodes (use binding like with gender)
   diagram.nodeTemplate =
@@ -153,6 +155,7 @@ function initDiagram() {
             },
             new go.Binding("text", "name"))
         );
+
   diagram.add(
     $(go.Part, "Table",
       { position: new go.Point(300, 10), selectable: false },
