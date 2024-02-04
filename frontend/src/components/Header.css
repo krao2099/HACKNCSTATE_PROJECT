@@ -5,19 +5,41 @@
     position: absolute;
     background: #050;
     height: 70px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .header .links {
     display: flex;
+    font-size: 16px;
     justify-content: space-between;
-    width: 60%;
+    width: 75%;
     position: relative;
     align-items: stretch;
     height: 100%;
-  }
+}
+
+.tree-header {
+    display: flex;
+    font-size: 28px;
+    margin-right: 24px;
+    margin-top: 14px;
+}
 
 .links a {
     color: white;
     text-decoration: none;
     padding-top: 25px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 16px;
+    height: 100%;
+}
+
+.links a:hover {
+    color: white;
+    background-color: #040;
+    text-decoration: none;
+    padding-top: 25px;
+    font-size: 16px;
+    height: 100%;
 }

@@ -15,25 +15,11 @@ const Tree = () => {
   //trying to convert the data to proper format
   //To = child, From = parent
   const [nodeDataArray1, setNodeDataArray1] = useState({
-    nda1: [
-      { key: 1, name: 'Dad',  picture: "photo", gender: "M"},
-      { key: 2, name: 'Mom', picture: "photo", gender: "F"},
-      { key: 3, name: 'Child A', picture: "photo", gender: "M"},
-      { key: 4, name: 'Child B', picture: "photo", gender: "male/female/other"},
-      { key: 5, name: 'Child C', picture: "photo", gender: "male/female/other"}
-    ]
+    nda1: []
   });
 
   const [linkDataArray1, setLinkDataArray1] = useState({
-    lda1: [
-      { key: -1, to: 1, from: 2, type: 2 },
-      { key: -2, to: 3, from: 1, type: 1 },
-      { key: -3, to: 3, from: 2, type: 1},
-      { key: -4, to: 4, from: 1, type: 1 },
-      { key: -5, to: 4, from: 2, type: 1 },
-      { key: -6, to: 5, from: 2, type: 1 },
-      { key: -7, to: 5, from: 1, type: 1 }
-    ]
+    lda1: []
   });
 
   useEffect(() => {
