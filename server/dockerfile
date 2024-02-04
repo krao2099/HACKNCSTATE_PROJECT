@@ -2,7 +2,7 @@ FROM python:latest
 
 WORKDIR /src
 
-COPY requirements.txt requirements.txt
+COPY . .
 
 ENV PYTHONUNBUFFERED=1
 
