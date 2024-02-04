@@ -46,6 +46,11 @@
     margin-left: 500px;
 }
 
+#card_image > img{
+    height: 100px;
+    width: 100px;
+}
+
 #title {
     color: #333;
     font-size: 1.5em;
@@ -71,8 +76,12 @@
     display:inline-block;
 }
 
-#feed > h1 {
+#feed > h2 {
     color: #333;
     margin-bottom: 10px;
     text-align: center;
+}
+
+#memory_type{
+    font-size: .7em;
 }

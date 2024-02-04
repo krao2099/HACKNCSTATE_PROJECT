@@ -36,6 +36,19 @@ const Profile = () => {
                 }
             
                 const data = await response.json();
+
+                const date = new Date(data.birthday);
+
+                const formattedDate = `${
+                    (date.getMonth() + 1).toString().padStart(2, '0')
+                  }/${
+                    date.getDate().toString().padStart(2, '0')
+                  }/${
+                    date.getFullYear()
+                  }`;
+
+                  data.birthday = formattedDate;
+
                 setProfile(data);
             } catch (error) {
                 console.error('Error:', error);
@@ -81,7 +94,7 @@ const Profile = () => {
             <h2>{profile.name}'s Memories</h2>
             <div id="profile-feed-scroller">
                 {memories.memArray.map(memory => (
-                    <FeedCard title={memory.title} description={memory.description} people = {memory.people}></FeedCard>
+                    <FeedCard title={memory.title} description={memory.description} people = {memory.people} file = {memory.files} type = {memory.mem_type}></FeedCard>
                 ))}
             </div>
         </div>
