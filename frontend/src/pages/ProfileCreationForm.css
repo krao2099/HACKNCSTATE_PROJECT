@@ -1,6 +1,6 @@
 .page-background {
     background-color: #f0f0f0; /* Light gray background */
-    padding-top: 20px; /* Top padding */
+    padding-top: 80px; /* Top padding */
     min-height: 100vh; /* Make sure it covers the full page height */
     display: flex;
     flex-direction: column; /* Stack children vertically */
@@ -39,15 +39,17 @@
 .green-button {
     background-color: #005500 !important; /* Green color */
     border-color: #005500 !important;
-    margin: 16px 8px 8px;
+    margin: 16px 8px 0px;
     width: 100%;
+    padding: 6px 0px !important;
 }
 
 .green-button:hover {
     background-color: #004400 !important; /* Darker shade for hover */
     border-color: #004400 !important;
-    margin: 16px 8px 8px;
+    margin: 16px 8px 0px;
     width: 100%;
+    padding: 6px 0px !important;
 }
 
 .form-item {
@@ -60,5 +62,9 @@
 }
 
 .bio-field {
+    width: 100%;
+}
+
+.selection {
     width: 100%;
 }

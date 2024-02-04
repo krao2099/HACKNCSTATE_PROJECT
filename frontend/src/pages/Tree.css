@@ -8,14 +8,14 @@
 }
 
 .header {
-  z-index: 10;
-  width: 100%;
-  top: 0;
-  position: absolute;
-  background: #050;
-  height: 70px;
-
-}
+    z-index: 10;
+    width: 100%;
+    top: 0;
+    position: absolute;
+    background: #050;
+    height: 70px;
+  
+  }
 
 .new-link {
   bottom: 30px;
@@ -42,9 +42,9 @@
 }
 
 .links a {
-  color: white;
-  text-decoration: none;
-  padding-top: 25px;
+    color: white;
+    text-decoration: none;
+    padding-top: 25px;
 }
 
 .diagram-component {

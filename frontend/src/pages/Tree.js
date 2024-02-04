@@ -3,6 +3,7 @@ import './Tree.css'
 import plus from '../images/plus.png';
 import * as go from 'gojs';
 import { ReactDiagram } from 'gojs-react';
+import Header from '../components/Header';
 
 // key - parent - child - type (1 = parent)
 // key - name - birth - bio - pic - gender
@@ -57,16 +58,7 @@ const Tree = () => {
 
     return (
         <div >
-            <div class="header">
-              <div class="links">
-              <h1 class="tree-header">Root to Something</h1>
-                <a href="/" class="add-relationships">Add Family Member</a>
-                <a href="/" class="add-relationships">Add Relationships</a>
-                <a href="/" class="memories-link">Memories</a>
-                <a href="/" class="about-link">About Us</a>
-              </div>
-              
-            </div>
+            <Header />
             <ReactDiagram
               initDiagram={initDiagram}
               divClassName='diagram-component'
