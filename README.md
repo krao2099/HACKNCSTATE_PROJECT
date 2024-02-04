@@ -1,7 +1,20 @@
 # Roots and Rings
 
+## Videos
+[![banner video](https://img.youtube.com/vi/QHju8EzQUQ4/0.jpg)](https://www.youtube.com/watch?v=2zPivPHqgD0)
+
+
 ## About 
 Roots & Rings is a family tree and memory sharing app designed to help you connect with your family and share memories with them.
+
+## Tech Stack
+
+![react](https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/React_Logo_SVG.svg/1200px-React_Logo_SVG.svg.png)
+![python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png)
+![flask](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Flask_logo.svg/1280px-Flask_logo.svg.png)
+![postgres](https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg)
+![docker](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/2560px-Docker_%28container_engine%29_logo.svg.png)
+![nginx](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/2560px-Nginx_logo.svg.png)
 
 ## Setup
 1. Ensure [Docker](https://docs.docker.com/get-docker/) is installed
