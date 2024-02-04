@@ -48,7 +48,7 @@ def view_memory(id):
 
 def get_memories_person(p_id):
 
-    query = "SELECT mem.id, mem.title, mem.description, mem.files, mem.mem_type FROM Memory_Person AS mp JOIN Memory AS mem ON mp.memory_id = mem.id WHERE mp.person_id = %s"
+    query = "SELECT mem.id, mem.title, mem.description, mem.file, mem.mem_type FROM Memory_Person AS mp JOIN Memory AS mem ON mp.memory_id = mem.id WHERE mp.person_id = %s"
 
 
     results = database_util.retrieve(query, (p_id,))
