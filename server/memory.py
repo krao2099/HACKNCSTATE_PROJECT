@@ -32,7 +32,7 @@ def view_memory(id):
 
     people = []
     for r in result2:
-        people.append(r[0])
+        people.append([r[0], r[1]])
 
     
     memory_data = {
@@ -63,18 +63,15 @@ def get_memories_person(p_id):
 
         result2 = database_util.retrieve(query, (id,))
 
-        people_ids = []
         people = []
         for r in result2:
-            people.append(r[1])
-            people_ids.append(r[0])
+            people.append([r[0], r[1]])
         memories.append({
             "id": id,
             "title": result[1],
             "description": result[2],
             "files": result[3],
             "mem_type": result[4],
-            "people_ids": people_ids,
             "people": people
         })
 
@@ -91,13 +88,13 @@ def get_memories_all():
     for result in results:
         id = result[0]
 
-        query = "SELECT name FROM Memory_Person AS mp JOIN Person AS per ON mp.person_id = per.id WHERE memory_id = %s"
+        query = "SELECT per.id, name FROM Memory_Person AS mp JOIN Person AS per ON mp.person_id = per.id WHERE memory_id = %s"
 
         result2 = database_util.retrieve(query, (id,))
 
         people = []
         for r in result2:
-            people.append(r[0])
+            people.append([r[0], r[1]])
         memories.append({
             "id": id,
             "title": result[1],
