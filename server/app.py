@@ -25,9 +25,9 @@ def view_profile_all_endpoint():
 def create_profile_endpoint():
     data = request.json
     id = create_profile(request.json)
-    create_relationship_nojson(id, data['p1_id'], data['relation_type'])
+    create_relationship_nojson(data['p1_id'], id, data['relation_type'])
     if data['p2_id']:
-        create_relationship_nojson(id, data['p2_id'], data['relation_type'])
+        create_relationship_nojson(data['p2_id'], id, data['relation_type'])
     return jsonify({'profile_id': id}), 200
 
 
