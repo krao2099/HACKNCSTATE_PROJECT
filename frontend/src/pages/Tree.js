@@ -94,8 +94,8 @@ const Tree = () => {
               initDiagram={initDiagram}
               divClassName='diagram-component'
               //Dummy Data
-              nodeDataArray={nodeDataArray1}
-              linkDataArray={linkDataArray1}
+              nodeDataArray={nodeDataArray1.nda1}
+              linkDataArray={linkDataArray1.lda1}
               // nodeDataArray={[
               //   { key: 0, name: 'Dad', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other", nodeType: "person"},
               //   { key: 1, name: 'Mom', birthday: 'lightblue', bio: "" , picture: "photo", gender: "F"},
