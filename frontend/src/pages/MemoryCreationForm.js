@@ -111,7 +111,7 @@ const MemoryCreationForm = () => {
           </div>
           <div className="form-group">
             <label className='form-item'>
-            description <br />
+            Description <br />
               <textarea name="description" className='bio-field' value={memory.description} onChange={handleChange} />
             </label>
           </div>
