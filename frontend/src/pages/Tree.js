@@ -88,10 +88,10 @@ const Tree = () => {
       <ReactDiagram
         initDiagram={initDiagram}
         divClassName='diagram-component'
-        // nodeDataArray={nodeDataArray1.nda1}
-        // linkDataArray={linkDataArray1.lda1}
-        nodeDataArray={getNode()}
-        linkDataArray={getLink()}
+        nodeDataArray={nodeDataArray1.nda1}
+        linkDataArray={linkDataArray1.lda1}
+        // nodeDataArray={getNode()}
+        // linkDataArray={getLink()}
 
         onModelChange={handleModelChange}
       />
