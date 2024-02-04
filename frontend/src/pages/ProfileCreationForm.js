@@ -21,7 +21,9 @@ const ProfileCreationForm = () => {
   useEffect(() => {
     const fetchPeopleList = async () => {
       try {
-        const response = await fetch('http://localhost:80/profile/all');
+        const apiURL = 'http://localhost:80/api/profile/all'
+        console.log(apiURL);
+        const response = await fetch(apiURL);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -95,7 +97,7 @@ const ProfileCreationForm = () => {
           </div>
           <div className="form-group">
             <label className='form-item'>
-              Gender <br />
+              Gender2 <br />
               <select name="gender" className="selection" value={profile.gender} onChange={handleChange}>
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
