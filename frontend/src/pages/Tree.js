@@ -11,6 +11,7 @@ import { ReactDiagram } from 'gojs-react';
 
 
 const Tree = () => {
+  //trying to convert the data to proper format
   const nodeDataArray1 = [
     [ "0", 'Dad', 'lightblue', "" , "photo", "male/female/other", "person"],
     [ "1", 'Mom', 'birth', "bio" , "photo", "male/female/other", "person"],
