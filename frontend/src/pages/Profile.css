@@ -36,10 +36,14 @@
 
 #card_content {
     float: left;
+    width: 300px;
 }
 
 #card_image {
     float:right;
+    height: 100px;
+    width: 100px;
+    margin-left: 500px;
 }
 
 #title {
