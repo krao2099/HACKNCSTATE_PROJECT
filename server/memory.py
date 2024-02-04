@@ -3,14 +3,14 @@ import database_util
 def create_memory(data):
     title = data['title']
     description = data['description']
-    files = data['files']
+    file = data['file']
     mem_type = data['mem_type']
     p_ids = data['p_ids']
     
 
     query = "INSERT INTO Memory (title, description, files, mem_type) VALUES (%s, %s, %s, %s) RETURNING id"
 
-    id = database_util.execute(query, (title, description, files, mem_type), retrieve=True)
+    id = database_util.execute(query, (title, description, file, mem_type), retrieve=True)
 
     query = "INSERT INTO Memory_Person (memory_id, person_id) VALUES (%s, %s)"
 

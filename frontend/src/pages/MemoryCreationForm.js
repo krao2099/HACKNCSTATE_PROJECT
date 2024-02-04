@@ -12,7 +12,7 @@ const MemoryCreationForm = () => {
   const [memory, setMemory] = useState({
     title: '',
     description: '',
-    files: [],
+    files: "",
     mem_type: '',
     p_ids: [],
   });
