@@ -16,7 +16,7 @@ const ProfileCreationForm = () => {
     pic: '',
     p1_id: '',
     p2_id: '',
-    relation_type: '0'
+    relation_type: '1'
   });
 
   const [peopleList, setPeopleList] = useState({
