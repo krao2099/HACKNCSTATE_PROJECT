@@ -115,8 +115,7 @@ function initDiagram() {
   const marriageTemplate =
     $(go.Node, "Auto",
       $(go.Shape, "Rectangle",
-        {
-          row: 0, column: 0, fill: "#424242",
+        { row: 0, column: 0, fill: "#424242",
           width: 3, height: 0
         }),
     );
@@ -125,9 +124,10 @@ function initDiagram() {
   const diagram =
     $(go.Diagram,
       {
+        'allowCopy': false,
         'undoManager.isEnabled': true,  // must be set to allow for model change listening
         // 'undoManager.maxHistoryLength': 0,  // uncomment disable undo/redo functionality
-        'clickCreatingTool.archetypeNodeData': { text: 'new node', color: 'lightblue' },
+        // 'clickCreatingTool.archetypeNodeData': { text: 'new node', color: 'lightblue' },
         model: new go.GraphLinksModel(
           {
             linkKeyProperty: 'key'  // IMPORTANT! must be defined for merges and data sync when using GraphLinksModel
@@ -137,19 +137,6 @@ function initDiagram() {
           $(go.LayeredDigraphLayout,
             { direction: 90, initializeOption: go.LayeredDigraphLayout.InitDepthFirstOut })
       });
-
-  // define tooltips for nodes
-  var tooltiptemplate =
-    $("ToolTip",
-      { "Border.fill": "whitesmoke", "Border.stroke": "black" },
-      $(go.TextBlock,
-        {
-          font: "bold 8pt Helvetica, bold Arial, sans-serif",
-          wrap: go.TextBlock.WrapFit,
-          margin: 5
-        },
-        new go.Binding("text", "", tooltipTextConverter))
-    );
   
   diagram.linkTemplate =
     $(go.Link,  // the whole link panel
@@ -164,7 +151,7 @@ function initDiagram() {
 
   diagram.nodeTemplate =
     $(go.Node, "Auto",
-      { deletable: false, toolTip: tooltiptemplate, isClipping: true },
+      { deletable: false,  isClipping: true },
       // new go.Binding("text", "name"),
       $(go.Shape, "Circle",
         {
@@ -189,35 +176,6 @@ function initDiagram() {
         },
         new go.Binding("text", "name"))
     );
-
-  //Legend
-  diagram.add(
-    $(go.Part, "Table",
-      { position: new go.Point(100, 10), selectable: false },
-      $(go.TextBlock, "Key",
-        { row: 0, font: "700 14px Droid Serif, sans-serif" }),  // end row 0
-      $(go.Panel, "Horizontal",
-        { row: 1, alignment: go.Spot.Left },
-        $(go.Shape, "Circle",
-          { desiredSize: new go.Size(30, 30), fill: bluegrad, margin: 5 }),
-        $(go.TextBlock, "Males",
-          { font: "700 13px Droid Serif, sans-serif" })
-      ),  // end row 1
-      $(go.Panel, "Horizontal",
-        { row: 2, alignment: go.Spot.Left },
-        $(go.Shape, "Circle",
-          { desiredSize: new go.Size(30, 30), fill: pinkgrad, margin: 5 }),
-        $(go.TextBlock, "Females",
-          { font: "700 13px Droid Serif, sans-serif" })
-      ),  // end row 2
-      $(go.Panel, "Horizontal",
-        { row: 3, alignment: go.Spot.Left },
-        $(go.Shape, "Circle",
-          { desiredSize: new go.Size(30, 30), fill: "orange", margin: 5 }),
-        $(go.TextBlock, "Other/Non-binary",
-          { font: "700 13px Droid Serif, sans-serif" })
-      )  // end row 3
-    ));
 
   diagram.addDiagramListener("ObjectSingleClicked",
     e => {
