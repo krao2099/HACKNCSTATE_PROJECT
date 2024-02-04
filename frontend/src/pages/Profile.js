@@ -15,7 +15,7 @@ const Profile = () => {
       });
 
     const [memories, setMemories] = useState({
-        
+        memArray: []
     });
 
     useEffect(() => {
@@ -59,6 +59,7 @@ const Profile = () => {
             
                 const data = await response.json();
                 console.log('Success:', data);
+                setMemories({memArray: data});
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -78,9 +79,10 @@ const Profile = () => {
 
         </div>
         <div id="feed">
-            <FeedCard mem_id="1"></FeedCard>
-            <FeedCard mem_id="2"></FeedCard>
-            <FeedCard mem_id="3"></FeedCard>
+            <h1>{profile.name}'s Memories</h1>
+            {memories.memArray.map(memory => (
+                <FeedCard title={memory.title} description={memory.description} people_ids = {memory.people_ids} people = {memory.people}></FeedCard>
+            ))}
         </div>
     </div>
     

@@ -1,21 +1,41 @@
 import database_util
 
 def return_tree():
-
     tree = {}
+    tree['persons'] = []
+    tree['relationships'] = []
 
-    query = "SELECT * FROM Person;"
+    query = "SELECT id,name,birthday,profile_picture,gender FROM Person;"
 
     persons = database_util.retrieve(query, None)
 
-    query = "SELECT * FROM Relationship;"
+    for person in persons:
 
-    relationships = database_util.retrieve(query, None)
+        data = {
+            'key': person[0],
+            'name': person[1],
+            'birthday': person[2],
+            'picture': person[3],
+            'gender': person[4],
+        }
 
-    tree['persons'] = persons
+        tree['persons'].append(data)
 
-    tree['relationships'] = relationships
+    query = "Select * FROM Relationship;"
 
+    relations = database_util.retrieve(query, None)
+
+    for relation in relations:
+
+        data = {
+            'key': (int(relation[0]) * -1),
+            'to': relation[1],
+            'from': relation[2],
+            'type': relation[3],
+        }
+
+        tree['relationships'].append(data)
+    
     return tree
 
 
