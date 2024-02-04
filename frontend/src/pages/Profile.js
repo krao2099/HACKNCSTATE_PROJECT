@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+import FeedCard from '../components/FeedCard';
 import './Profile.css'
 
 const Profile = () => {
@@ -12,10 +14,38 @@ const Profile = () => {
         profile_picture: ''
       });
 
+    const [memories, setMemories] = useState({
+        
+    });
+
     useEffect(() => {
+
+        const queryParameters = new URLSearchParams(window.location.search)
+        const pid = queryParameters.get("pid")
         const loadData = async (e) => {
             try {
-                const apiURL = 'http://localhost/api/profile/20'
+                const apiURL = 'http://localhost/api/profile/' + pid
+                const response = await fetch(apiURL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                }
+                });
+            
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+            
+                const data = await response.json();
+                setProfile(data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        const loadMemories = async (e) => {
+            try {
+                const apiURL = 'http://localhost/api/memory/profile/' + pid
                 const response = await fetch(apiURL, {
                 method: 'GET',
                 headers: {
@@ -29,22 +59,31 @@ const Profile = () => {
             
                 const data = await response.json();
                 console.log('Success:', data);
-                setProfile(data);
             } catch (error) {
                 console.error('Error:', error);
             }
         }
         loadData();
+        loadMemories();
     }, []);
 
   return (
     <div>
-        <h1>{profile.name}</h1>
-        <p>{profile.birthday} | {profile.gender}</p>
-        <img src={profile.profile_picture} alt="profile pic"></img>
+        <div id="bio">
+            <h1>{profile.name}</h1>
+            <p> {profile.gender} born {profile.birthday}</p>
+            <img src={profile.profile_picture} alt="profile pic"></img>
 
-        <p>{profile.bio}</p>
+            <p>{profile.bio}</p>
+
+        </div>
+        <div id="feed">
+            <FeedCard mem_id="1"></FeedCard>
+            <FeedCard mem_id="2"></FeedCard>
+            <FeedCard mem_id="3"></FeedCard>
+        </div>
     </div>
+    
   );
 };
 

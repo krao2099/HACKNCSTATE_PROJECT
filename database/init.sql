@@ -122,4 +122,11 @@ INSERT INTO Memory_Person (memory_id, person_id) VALUES
     (2, 4), -- Family vacation memory
     (3, 10), -- Graduation memory
     (4, 4), -- David's childhood memory
-    (5, 18); -- Quinn and Ryan's wedding memory
+    (5, 18),
+    (1, 20),
+    (2, 20),
+    (3, 20),
+    (4, 20),
+    (5, 20),
+    (6, 20); -- Quinn and Ryan's wedding memory
+
