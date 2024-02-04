@@ -66,13 +66,14 @@ const MemoryCreationForm = () => {
         reader.onload = function () {
             console.log("File loaded");
             document = reader.result;
-            setMemory({ ...memory, pic:document });
+            setMemory({ ...memory, file:document });
         }
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(JSON.stringify(memory));
     const apiURL = 'http://localhost:80/api/memory'
 
     try {
