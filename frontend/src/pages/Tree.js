@@ -14,27 +14,33 @@ import Header from '../components/Header';
 const Tree = () => {
   //trying to convert the data to proper format
   //To = child, From = parent
-  var nodeDataArray1 = [
-    { key: 1, name: 'Dad',  picture: "photo", gender: "M"},
-    { key: 2, name: 'Mom', picture: "photo", gender: "F"},
-    { key: 3, name: 'Child A', picture: "photo", gender: "M"},
-    { key: 4, name: 'Child B', picture: "photo", gender: "male/female/other"},
-    { key: 5, name: 'Child C', picture: "photo", gender: "male/female/other"}
-  ];
+  const [nodeDataArray1, setNodeDataArray1] = useState({
+    nda1: [
+      { key: 1, name: 'Dad',  picture: "photo", gender: "M"},
+      { key: 2, name: 'Mom', picture: "photo", gender: "F"},
+      { key: 3, name: 'Child A', picture: "photo", gender: "M"},
+      { key: 4, name: 'Child B', picture: "photo", gender: "male/female/other"},
+      { key: 5, name: 'Child C', picture: "photo", gender: "male/female/other"}
+    ]
+  });
 
-  var linkDataArray1 = [
-    { key: -1, to: 1, from: 2, type: 2 },
-    { key: -2, to: 3, from: 1, type: 1 },
-    { key: -3, to: 3, from: 2, type: 1},
-    { key: -4, to: 4, from: 1, type: 1 },
-    { key: -5, to: 4, from: 2, type: 1 },
-    { key: -6, to: 5, from: 2, type: 1 },
-    { key: -7, to: 5, from: 1, type: 1 }
-  ];
+  const [linkDataArray1, setLinkDataArray1] = useState({
+    lda1: [
+      { key: -1, to: 1, from: 2, type: 2 },
+      { key: -2, to: 3, from: 1, type: 1 },
+      { key: -3, to: 3, from: 2, type: 1},
+      { key: -4, to: 4, from: 1, type: 1 },
+      { key: -5, to: 4, from: 2, type: 1 },
+      { key: -6, to: 5, from: 2, type: 1 },
+      { key: -7, to: 5, from: 1, type: 1 }
+    ]
+  });
 
   useEffect(() => {
     const fetchTree = async () => {
       try {
+        let updatedLinkDataArray1 = [];
+        let updatedNodeDataArray1 = [];
         const apiURL = 'http://localhost:80/api/tree'
         console.log(apiURL);
         const response = await fetch(apiURL);
@@ -43,84 +49,86 @@ const Tree = () => {
         }
         const data = await response.json();
         console.log(data);
-        nodeDataArray1 = data.persons;
-        linkDataArray1 = data.relationships;
-        console.log(nodeDataArray1);
-        console.log(linkDataArray1);
+        updatedNodeDataArray1 = data.persons;
+        updatedLinkDataArray1 = data.relationships;
+        console.log(updatedNodeDataArray1);
+        console.log(updatedLinkDataArray1);
+
+        var key1 = updatedLinkDataArray1.length * -1 - 1;
+        var checked =[];
+        updatedLinkDataArray1.forEach(async (link) => {
+          if (link.type == 2) {
+            // console.log(data)
+            // console.log(data[3])
+            var length = updatedNodeDataArray1.length + 1;
+      
+            updatedNodeDataArray1.push({ key: length, nodeType: "marriage", parentA: link.to, parentB: link.from})
+            // linkDataArray1.push({key: key1, from: length, to: link.to})
+            
+            updatedLinkDataArray1.push({key: key1, from: link.to, to: length})
+            link.to = length
+            link.type = false
+            key1--
+          }
+        });
+        updatedNodeDataArray1.forEach(async (node) => {
+          if (node.nodeType) {
+            updatedLinkDataArray1.forEach(async (link) => {
+              if ((link.from == node.parentA || link.from == node.parentB) && link.type) {
+                if (checked.includes(link.to)) {
+                  link.to = 0
+                  link.from = 0
+                } else {
+                  link.from = node.key
+                  checked.push(link.to)
+                }
+                
+              }
+            })
+          }
+        });
+        setLinkDataArray1({ lda1: updatedLinkDataArray1 });
+        setNodeDataArray1({ nda1: updatedNodeDataArray1 });
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
       }
     };
     fetchTree();
   }, []);
-  
-  var key1 = linkDataArray1.length * -1 - 1;
-  var checked =[];
-  linkDataArray1.forEach(async (link) => {
-    if (link.type == 2) {
-      // console.log(data)
-      // console.log(data[3])
-      var length = nodeDataArray1.length + 1;
 
-      nodeDataArray1.push({ key: length, nodeType: "marriage", parentA: link.to, parentB: link.from})
-      // linkDataArray1.push({key: key1, from: length, to: link.to})
-      
-      linkDataArray1.push({key: key1, from: link.to, to: length})
-      link.to = length
-      link.type = false
-      key1--
-    }
-  })
-  nodeDataArray1.forEach(async (node) => {
-    if (node.nodeType) {
-      linkDataArray1.forEach(async (link) => {
-        if ((link.from == node.parentA || link.from == node.parentB) && link.type) {
-          if (checked.includes(link.to)) {
-            link.to = 0
-            link.from = 0
-          } else {
-            link.from = node.key
-            checked.push(link.to)
-          }
-          
-        }
-      })
-    }
-  })
   console.log(nodeDataArray1)
   console.log(linkDataArray1)
-
-    return (
-        <div >
-            <Header />
-            <ReactDiagram
-              initDiagram={initDiagram}
-              divClassName='diagram-component'
-              //Dummy Data
-              nodeDataArray={nodeDataArray1}
-              linkDataArray={linkDataArray1}
-              // nodeDataArray={[
-              //   { key: 0, name: 'Dad', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other", nodeType: "person"},
-              //   { key: 1, name: 'Mom', birthday: 'lightblue', bio: "" , picture: "photo", gender: "F"},
-              //   { key: 2, name: 'Child A', birthday: 'lightblue', bio: "" , picture: "photo", gender: "M"},
-              //   { key: 3, name: 'Child B', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"},
-              //   { key: 4, name: 'Child C', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"}
-              // ]}
-              // linkDataArray={[
-              //   { key: -1, from: 0, to: 1 },
-              //   { key: -2, from: 0, to: 2 },
-              //   { key: -3, from: 1, to: 1 },
-              //   { key: -4, from: 2, to: 3 },
-              //   { key: -5, from: 3, to: 0 }
-              // ]}
-              onModelChange={handleModelChange}
-            />
-            <a className="new-link">
-              <img src={plus}/>
-            </a>
-        </div>
-        
-    );
+  return (
+      <div >
+          <Header />
+          <ReactDiagram
+            initDiagram={initDiagram}
+            divClassName='diagram-component'
+            //Dummy Data
+            nodeDataArray={nodeDataArray1.nda1}
+            linkDataArray={linkDataArray1.lda1}
+            // nodeDataArray={[
+            //   { key: 0, name: 'Dad', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other", nodeType: "person"},
+            //   { key: 1, name: 'Mom', birthday: 'lightblue', bio: "" , picture: "photo", gender: "F"},
+            //   { key: 2, name: 'Child A', birthday: 'lightblue', bio: "" , picture: "photo", gender: "M"},
+            //   { key: 3, name: 'Child B', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"},
+            //   { key: 4, name: 'Child C', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"}
+            // ]}
+            // linkDataArray={[
+            //   { key: -1, from: 0, to: 1 },
+            //   { key: -2, from: 0, to: 2 },
+            //   { key: -3, from: 1, to: 1 },
+            //   { key: -4, from: 2, to: 3 },
+            //   { key: -5, from: 3, to: 0 }
+            // ]}
+            onModelChange={handleModelChange}
+          />
+          <a className="new-link">
+            <img src={plus}/>
+          </a>
+      </div>
+      
+  );
 };
 
 /**
