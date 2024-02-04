@@ -1,9 +1,5 @@
 # Roots and Rings
 
-## Videos
-[![banner video](https://img.youtube.com/vi/QHju8EzQUQ4/0.jpg)](https://www.youtube.com/watch?v=2zPivPHqgD0)
-
-
 ## About 
 Roots & Rings is a family tree and memory sharing app designed to help you connect with your family and share memories with them.
 
