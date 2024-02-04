@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 import os
-from user_profile import create_profile, view_profile
+from user_profile import create_profile, view_profile, view_all_profile
 from user_relationship import create_relationship, create_relationship_nojson
-from memory import create_memory, view_memory, get_memories_person
+from memory import create_memory, view_memory, get_memories_person, get_memories_all
 from tree import return_tree
 
 app = Flask(__name__)
@@ -16,6 +16,10 @@ def retrieve_tree_endpoint():
 @app.route('/profile/<id>', methods=['GET'])
 def view_profile_endpoint(id):
     return jsonify(view_profile(id)), 200
+
+@app.route('/profile/all', methods=['GET'])
+def view_profile_all_endpoint():
+    return jsonify(view_all_profile()), 200
 
 @app.route('/profile', methods=['POST'])
 def create_profile_endpoint():
@@ -37,9 +41,13 @@ def create_relationship_endpoint():
     id = create_relationship(data)
     return jsonify({'relation_id': id}), 200
 
-@app.route('/profile/memory/<id>', methods=['GET'])
+@app.route('/memory/profile/<id>', methods=['GET'])
 def get_memories_person_endpoint(id):
     return jsonify(get_memories_person(id)), 200
+
+@app.route('/memory/all', methods=['GET'])
+def get_memories_all_endpoint():
+    return jsonify(get_memories_all()), 200
 
 @app.route('/memory/<id>', methods=['GET'])
 def view_memory_endpoint(id):

@@ -53,6 +53,8 @@ def get_memories_person(p_id):
 
     results = database_util.retrieve(query, (p_id,))
 
+    print(results)
+
     memories = []
     for result in results:
         id = result[0]
@@ -64,16 +66,43 @@ def get_memories_person(p_id):
         people = []
         for r in result2:
             people.append(r[1])
-
-        memory_data = {
+        memories.append({
             "id": id,
             "title": result[1],
             "description": result[2],
             "files": result[3],
             "mem_type": result[4],
             "people": people
-        }
-        memories.append(memory_data)
+        })
+
+    return memories
+
+def get_memories_all():
+
+    query = "SELECT mem.id, mem.title, mem.description, mem.files, mem.mem_type FROM Memory AS mem"
+
+
+    results = database_util.retrieve(query, ())
+
+    memories = []
+    for result in results:
+        id = result[0]
+
+        query = "SELECT * FROM Memory_Person WHERE memory_id = %s"
+
+        result2 = database_util.retrieve(query, (id,))
+
+        people = []
+        for r in result2:
+            people.append(r[1])
+        memories.append({
+            "id": id,
+            "title": result[1],
+            "description": result[2],
+            "files": result[3],
+            "mem_type": result[4],
+            "people": people
+        })
 
     return memories
 

@@ -117,8 +117,8 @@ INSERT INTO Memory (title, description, files, mem_type) VALUES
 INSERT INTO Memory_Person (memory_id, person_id) VALUES
     (1, 1), -- Alice's birthday memory
     (1, 4), -- Add david to alices birthday
-    (1, 1), -- Alice's birthday memory
-    (1, 2), -- Add david to alices birthday
+    (2, 1), -- Alice's birthday memory
+    (2, 2), -- Add david to alices birthday
     (2, 4), -- Family vacation memory
     (3, 10), -- Graduation memory
     (4, 4), -- David's childhood memory
