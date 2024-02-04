@@ -1,0 +1,23 @@
+.logos {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.logos img {
+    height: 200px;
+}
+
+.logos #mlh {
+    padding: 30px;
+}
+
+#main-feed {
+    width: 90%;
+    padding-left: 5%;
+}
+
+#main-feed>p {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
