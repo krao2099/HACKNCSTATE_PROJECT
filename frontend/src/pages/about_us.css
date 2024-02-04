@@ -24,18 +24,26 @@
 
 #main-feed .sources {
     display: flex;
-    width: 60%;
+    /* text-align: center; */
+    width: 80%;
     margin-left: 13%;
     justify-content: space-around;
-    align-items: center;
+    /* align-items: center; */
     margin-bottom: 50px;
 }
 
+h2 {
+    width: 100%;
+    text-align: center;
+}
+/* #main-feed .sources .contributers {
+    text-align: left;
+} */
 
 #main-feed .sources img {
-    height: 75px;
+    height: 100px;
 }
 
 #main-feed .sources #devpost img {
-    padding: 200px;
+    padding: 20px;
 }

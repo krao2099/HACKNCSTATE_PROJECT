@@ -95,7 +95,7 @@ const Tree = () => {
 
         onModelChange={handleModelChange}
       />
-      <a className="new-link">
+      <a href="/add_person"className="new-link">
         <img src={plus} />
       </a>
     </div>
