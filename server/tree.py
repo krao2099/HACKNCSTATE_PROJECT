@@ -29,8 +29,8 @@ def return_tree():
 
         data = {
             'key': (int(relation[0]) * -1),
-            'to': relation[1],
-            'from': relation[2],
+            'from': relation[1],
+            'to': relation[2],
             'type': relation[3],
         }
 

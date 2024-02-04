@@ -7,6 +7,7 @@ function Header() {
                 <a href="/add_person" class="add-relationships">Add Family Member</a>
                 <a href="/" class="add-relationships">Add Relationships</a>
                 <a href="/feed" class="memories-link">Memories</a>
+                <a href="/add_memory" class="add-memories">Add Memories</a>
                 <a href="/" class="about-link">About Us</a>
             </div> 
         </header>
