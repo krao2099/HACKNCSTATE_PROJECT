@@ -106,7 +106,7 @@ const ProfileCreationForm = () => {
           </div>
           <div className="form-group">
             <label className='form-item'>
-              Gender2 <br />
+              Gender <br />
               <select name="gender" className="selection" value={profile.gender} onChange={handleChange}>
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
