@@ -4,7 +4,7 @@ services:
     image: postgres:latest
     user: postgres
     environment:
-      POSTGRES_DB: crux_db
+      POSTGRES_DB: family_tree
       POSTGRES_PASSWORD: password
     volumes:
       - ./database:/docker-entrypoint-initdb.d

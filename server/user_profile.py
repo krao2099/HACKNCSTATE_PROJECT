@@ -27,3 +27,6 @@ def view_profile(id):
 
     return person_data
 
+def view_all_profile():
+    query = "SELECT id, name FROM Person"
+    return database_util.retrieve(query, None)

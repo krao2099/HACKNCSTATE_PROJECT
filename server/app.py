@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import os
-from user_profile import create_profile, view_profile
+from user_profile import create_profile, view_profile, view_all_profile
 from user_relationship import create_relationship, create_relationship_nojson
 from memory import create_memory, view_memory, get_memories_person, get_memories_all
 from tree import return_tree
@@ -16,6 +16,10 @@ def retrieve_tree_endpoint():
 @app.route('/profile/<id>', methods=['GET'])
 def view_profile_endpoint(id):
     return jsonify(view_profile(id)), 200
+
+@app.route('/profile/all', methods=['GET'])
+def view_profile_all_endpoint():
+    return jsonify(view_all_profile()), 200
 
 @app.route('/profile', methods=['POST'])
 def create_profile_endpoint():

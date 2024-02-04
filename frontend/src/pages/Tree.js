@@ -4,8 +4,56 @@ import plus from '../images/plus.png';
 import * as go from 'gojs';
 import { ReactDiagram } from 'gojs-react';
 
+// key - parent - child - type (1 = parent)
+// key - name - birth - bio - pic - gender
+
+
+
 
 const Tree = () => {
+  const nodeDataArray1 = [
+    [ "0", 'Dad', 'lightblue', "" , "photo", "male/female/other", "person"],
+    [ "1", 'Mom', 'birth', "bio" , "photo", "male/female/other", "person"],
+    [ "2", 'Child A', 'lightblue', "" , "photo", "male/female/other", "person"],
+    [ "3", 'Child B', 'lightblue', "" , "photo", "male/female/other", "person"]
+  ];
+  const linkDataArray1 = [
+    [1, 0, 2, 1],
+    [2, 0, 1, 2],
+    [3, 1, 3, 1]
+  ];
+  var linkDataArray2 = []
+  var nodeDataArray2 = []
+  nodeDataArray1.forEach(async (data) => {
+    nodeDataArray2.push({ key: parseInt(data[0]), name: data[1], birthday: data[2], bio: data[3] , picture: data[4], gender: data[5], nodeType: "person"})
+  })
+  
+  var key1 = -1
+  linkDataArray1.forEach(async (data) => {
+    if (data[3] != 1) {
+      linkDataArray2.push({key: key1, from: data[2], to: data[1]})
+      key1--
+    } else {
+      // console.log(data)
+      // console.log(data[3])
+      var length = nodeDataArray2.length;
+      nodeDataArray2.push({ key: length, nodeType: "marriage"})
+      linkDataArray2.push({key: key1, from: data[2], to: length})
+      key1--
+      linkDataArray2.push({key: key1, from: data[3], to: length})
+      key1--
+      nodeDataArray2.forEach(async (data) => {
+        if (data.to == data[3] || data.to == data[3]) {
+          data.to = length
+        }
+      })
+      
+    }
+    
+  })
+  console.log(nodeDataArray2)
+  console.log(linkDataArray2)
+
     return (
         <div >
             <div class="header">
@@ -21,15 +69,13 @@ const Tree = () => {
             <ReactDiagram
               initDiagram={initDiagram}
               divClassName='diagram-component'
+              //Dummy Data
               nodeDataArray={[
-                { key: 0, name: 'Alpha', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other", nodeType: "person"},
-                { key: 1, name: 'Alpha', birthday: 'lightblue', bio: "" , picture: "photo", gender: "F"},
-                { key: 2, name: 'Alpha', birthday: 'lightblue', bio: "" , picture: "photo", gender: "M"},
-                { key: 3, name: 'Alpha', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"},
-                { key: 4, name: 'Alpha', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"},
-                { key: 5, nodeType: "marriage" },
-                { key: 6, text: 'Gamma', color: 'lightgreen', loc: '0 150' },
-                { key: 7, text: 'Delta', color: 'pink', loc: '150 150' }
+                { key: 0, name: 'Dad', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other", nodeType: "person"},
+                { key: 1, name: 'Mom', birthday: 'lightblue', bio: "" , picture: "photo", gender: "F"},
+                { key: 2, name: 'Child A', birthday: 'lightblue', bio: "" , picture: "photo", gender: "M"},
+                { key: 3, name: 'Child B', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"},
+                { key: 4, name: 'Child C', birthday: 'lightblue', bio: "" , picture: "photo", gender: "male/female/other"}
               ]}
               linkDataArray={[
                 { key: -1, from: 0, to: 1 },
@@ -65,7 +111,10 @@ function initDiagram() {
         model: new go.GraphLinksModel(
           {
             linkKeyProperty: 'key'  // IMPORTANT! must be defined for merges and data sync when using GraphLinksModel
-          })
+          }),
+          layout:  // create a TreeLayout for the family tree
+          $(go.TreeLayout,
+            { angle: 90, nodeSpacing: 10, layerSpacing: 40, layerStyle: go.TreeLayout.LayerUniform })
       });
 
       // define tooltips for nodes
@@ -81,12 +130,14 @@ function initDiagram() {
             new go.Binding("text", "", tooltipTextConverter))
         );
   // define a simple Node template
+  //TODO update the shape styling for the "marriage" nodes (use binding like with gender)
   diagram.nodeTemplate =
     $(go.Node, "Auto",
           { deletable: false, toolTip: tooltiptemplate },
-          new go.Binding("text", "name"),
+          // new go.Binding("text", "name"),
           $(go.Shape, "Circle",
             {
+              //TODO Change this for marriage nodes so its small
               fill: "lightgray",
               stroke: null, strokeWidth: 0,
               stretch: go.GraphObject.Fill,
@@ -133,6 +184,7 @@ function initDiagram() {
   return diagram;
 }
 
+//Legit Colors (not blue/pink)
 var bluegrad = '#76a21e';
 var pinkgrad = '#560D0D';
 
