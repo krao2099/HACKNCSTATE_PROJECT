@@ -1,5 +1,7 @@
 # Roots and Rings
 
+![Banner Gif](frontend/src/images/ezgif-4-5defe3d361.gif)
+
 ## About 
 Roots & Rings is a family tree and memory sharing app designed to help you connect with your family and share memories with them.
 
