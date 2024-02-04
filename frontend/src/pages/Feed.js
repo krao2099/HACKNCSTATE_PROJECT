@@ -41,7 +41,7 @@ const Feed = () => {
 
             <div id = "main-feed-scroller">
                 {memories.memArray.map(memory => (
-                    <FeedCard title={memory.title} description={memory.description} people = {memory.people} file = {memory.files}></FeedCard>
+                    <FeedCard title={memory.title} description={memory.description} people = {memory.people} file = {memory.files} type = {memory.mem_type}></FeedCard>
                 ))}
             </div>
         </div>
