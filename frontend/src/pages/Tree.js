@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Tree.css'
 import plus from '../images/plus.png';
 import * as go from 'gojs';
@@ -30,6 +30,28 @@ const Tree = () => {
     { key: -6, from: 5, to: 2, type: 1 },
     { key: -7, from: 5, to: 1, type: 1 }
   ];
+
+  useEffect(() => {
+    const fetchTree = async () => {
+      try {
+        const apiURL = 'http://localhost:80/api/tree'
+        console.log(apiURL);
+        const response = await fetch(apiURL);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log(data);
+        nodeDataArray1 = data.persons;
+        linkDataArray1 = data.relationships;
+        console.log(nodeDataArray1);
+        console.log(linkDataArray1);
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+    };
+    fetchTree();
+  }, []);
   
   var key1 = linkDataArray1.length * -1 - 1;
   var parents =[];
@@ -83,7 +105,7 @@ const Tree = () => {
               // ]}
               onModelChange={handleModelChange}
             />
-            <a class="new-link">
+            <a className="new-link">
               <img src={plus}/>
             </a>
         </div>
