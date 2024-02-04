@@ -20,7 +20,20 @@ const ProfileCreationForm = () => {
   };
 
   const handleFileChange = (e) => {
-    setProfile({ ...profile, pic: e.target.files[0] });
+
+    const file = e.target.files[0];
+    let document = "";
+
+    if(file) {
+        console.log("File true");
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            console.log("File loaded");
+            document = reader.result;
+            setProfile({ ...profile, pic:document });
+        }
+    }
   };
 
   const handleSubmit = async (e) => {
